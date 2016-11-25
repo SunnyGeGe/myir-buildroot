@@ -1,0 +1,26 @@
+#/etc/ppp/peers/gprs
+# Usage:   root>pppd call gprs
+/dev/ttyUSB1
+115200
+#crtscts
+modem
+noauth
+debug
+nodetach
+#hide-password
+usepeerdns
+noipdefault
+defaultroute
+user "cmnet"
+0.0.0.0:0.0.0.0
+#ipcp-accept-local
+#ipcp-accept-remote
+#lcp-echo-failure  12
+#lcp-echo-interval 3
+noccp
+#novj
+#novjccomp
+persist
+connect '/usr/sbin/chat -s -v -f /etc/ppp/peers/gprs-connect-chat'
+#connect '/bin/chat -v -s -f /etc/ppp/gprs-connect-chat'
+#disconnect '/bin/chat -v -f /etc/ppp/gprs-disconnect-chat'
