@@ -1,0 +1,43 @@
+menuconfig BR2_PACKAGE_MYIR
+	bool "MYIRTECH packaes"
+	depends on BR2_arm
+	help
+		Those packages were provided by myirtech for myirtech's dev boar		ds.
+
+if BR2_PACKAGE_MYIR
+choice
+	prompt "MYIRTECH dev boards packages"
+
+config BR2_PACKAGE_PCBA_TEST_MYD_C437X_IDK
+	bool "myd_c437x_idk"
+
+config BR2_PACKAGE_PCBA_TEST_MYD_C437X
+	bool "myd_c437x"
+
+config BR2_PACKAGE_PCBA_TEST_RICOBOARD
+	bool "ricoboard"
+
+config BR2_PACKAGE_PCBA_TEST_MYD_C335X
+	bool "myd_c335x"
+
+config BR2_PACKAGE_PCBA_TEST_MYD_J335X
+	bool "myd_j335x"
+
+config BR2_PACKAGE_PCBA_TEST_MYD_Y335X
+	bool "myd_y335x"
+
+endchoice
+
+config BR2_PACKAGE_MYIR_PLATFORM
+	string
+	default "myd_c437x_idk" if BR2_PACKAGE_PCBA_TEST_MYD_C437X_IDK
+	default "myd_c437x_all" if BR2_PACKAGE_PCBA_TEST_MYD_C437X
+	default "ricoboard" if BR2_PACKAGE_PCBA_TEST_RICOBOARD
+	default "myd_c335x" if BR2_PACKAGE_PCBA_TEST_MYD_C335X
+	default "myd_j335x" if BR2_PACKAGE_PCBA_TEST_MYD_J335X
+	default "myd_y335x" if BR2_PACKAGE_PCBA_TEST_MYD_Y335X
+
+source "package/myir/pcba_test/Config.in"
+
+endif
+

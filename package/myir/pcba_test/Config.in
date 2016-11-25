@@ -1,0 +1,4 @@
+config BR2_PACKAGE_PCBA_TEST
+	bool "myir-pcba-test"
+	help
+	  myir-pcba-test is intended to be used on embedded boards of myirtech.
