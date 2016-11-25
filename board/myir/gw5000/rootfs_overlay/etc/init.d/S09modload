@@ -1,0 +1,27 @@
+#!/bin/sh
+#
+
+load_drivers()
+{
+	while IFS= read -r line; do
+		modprobe $line
+	done < "/etc/modules-load.gw5000/$1.conf"
+}
+
+do_board()
+{
+	load_drivers "gw5000" 
+}
+
+case "$1" in
+	start)
+		do_board
+		;;
+	stop)
+		;;
+	restart|reload)
+		;;
+	*)
+		echo "Usage: $0 {start|stop|restart}"
+		exit 1
+esac

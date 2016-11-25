@@ -1,0 +1,168 @@
+1471685792.920096: wpa_supplicant v2.1
+1471685792.954507: random: Trying to read entropy from /dev/random
+1471685792.963187: Successfully initialized wpa_supplicant
+1471685792.963256: Initializing interface 'wifi1' conf 'wpa_supplicant_open.conf' driver 'bsd' ctrl_interface 'N/A' bridge 'N/A'
+1471685792.973793: Configuration file 'wpa_supplicant_open.conf' -> '/home/rsi/release/wpa_supplicant_open.conf'
+1471685792.973837: Reading configuration file '/home/rsi/release/wpa_supplicant_open.conf'
+1471685792.986187: update_config=1
+1471685792.986671: ctrl_interface='/var/run/wpa_supplicant'
+1471685792.986715: ap_scan=2
+1471685792.993668: uuid=12345678-9abc-def0-1234-56789abcdef0
+1471685792.993694: device_name='RS9113_n-Link'
+1471685792.993705: manufacturer='Redpine Signals INC'
+1471685792.993715: model_name='OneBox-Mobile'
+1471685792.993727: model_number='9113'
+1471685792.993737: serial_number='03'
+1471685792.993764: os_version=01020300
+1471685792.993781: config_methods='display push_button keypad'
+1471685792.993797: wps_cred_processing=0
+1471685793.001127: Line: 665 - start of a new network block
+1471685793.001231: ssid - hexdump_ascii(len=10):
+     52 45 44 50 49 4e 45 5f 41 50                     REDPINE_AP      
+1471685793.001324: frequency=2462 (0x99e)
+1471685793.001350: key_mgmt: 0x4
+1471685793.001358: mode=2 (0x2)
+1471685793.001367: priority=2 (0x2)
+1471685793.001540: Priority group 2
+1471685793.001550:    id=0 ssid='REDPINE_AP'
+1471685793.001617: rtbuf_len failed: Function not implemented
+
+1471685793.002095: IOCTL: bsd_ctrl_iface 296 enable = 0
+
+1471685793.002160: wpa_driver_bsd_capa: drivercaps=0x4401e401,cryptocaps=0x0000001b
+1471685793.002196: Add interface wifi1 to a new radio N/A
+1471685793.048692: wifi1: Own MAC address: 00:23:a7:8d:0b:98
+1471685793.048725: bsd_set_key: alg=0 addr=(nil) key_idx=0 set_tx=0 seq_len=0 key_len=0
+1471685793.048738: bsd_del_key: key_idx=0
+1471685793.048744: IOCTL: bsd_set80211 112 ioctl_op = 20
+
+1471685793.048774: bsd_set_key: alg=0 addr=(nil) key_idx=1 set_tx=0 seq_len=0 key_len=0
+1471685793.048782: bsd_del_key: key_idx=1
+1471685793.048786: IOCTL: bsd_set80211 112 ioctl_op = 20
+
+1471685793.048796: bsd_set_key: alg=0 addr=(nil) key_idx=2 set_tx=0 seq_len=0 key_len=0
+1471685793.048803: bsd_del_key: key_idx=2
+1471685793.048808: IOCTL: bsd_set80211 112 ioctl_op = 20
+
+1471685793.048817: bsd_set_key: alg=0 addr=(nil) key_idx=3 set_tx=0 seq_len=0 key_len=0
+1471685793.048824: bsd_del_key: key_idx=3
+1471685793.048828: IOCTL: bsd_set80211 112 ioctl_op = 20
+
+1471685793.048838: wpa_driver_bsd_set_countermeasures: enabled=0
+1471685793.048844: IOCTL: bsd_set80211 112 ioctl_op = 25
+
+1471685793.048857: wifi1: RSN: flushing PMKID list in the driver
+1471685793.048875: wifi1: Setting scan request: 0.100000 sec
+1471685793.048975: WPS: Converting display to virtual_display for WPS 2.0 compliance
+1471685793.048987: WPS: Converting push_button to virtual_push_button for WPS 2.0 compliance
+1471685793.049013: wifi1: WPS: UUID based on configuration: 12345678-9abc-def0-1234-56789abcdef0
+1471685793.063809: EAPOL: SUPP_PAE entering state DISCONNECTED
+1471685793.063845: EAPOL: Supplicant port status: Unauthorized
+1471685793.063853: EAPOL: KEY_RX entering state NO_KEY_RECEIVE
+1471685793.063857: EAPOL: SUPP_BE entering state INITIALIZE
+1471685793.063867: EAP: EAP entering state DISABLED
+1471685793.089890: wifi1: Added interface wifi1
+1471685793.089937: wifi1: State: DISCONNECTED -> DISCONNECTED
+1471685793.090132: random: Got 15/20 bytes from /dev/random
+1471685793.090183: l2_packet_receive - recvfrom: Network is down
+1471685793.090296: random: Got 5/5 bytes from /dev/random
+1471685793.149104: wifi1: State: DISCONNECTED -> SCANNING
+1471685793.149143: Setting up AP (SSID='REDPINE_AP')
+1471685793.149197: wpa_driver_bsd_associate: ssid 'REDPINE_AP' wpa ie len 0 pairwise 16 group 16 key mgmt 4
+wpa_driver_bsd_associate 1123 freq = 2462 mode = 2
+1471685793.149280: IOCTL: bsd_set80211 112 ioctl_op = 9
+
+1471685793.149302: In wpa_driver_bsd_associate 1201 drv->sock_xmit = (nil) alg 0 
+
+1471685793.149310: IOCTL: bsd_set80211 112 ioctl_op = 7
+
+1471685793.178659: In wpa_driver_bsd_associate 1211 drv->sock_xmit = 0xfccf8
+
+1471685793.179197: BSS count 1, BSSID mask 00:00:00:00:00:00 (0 bits)
+1471685793.179224: Completing interface initialization
+1471685793.179229: Mode: (null)  Channel: 11  Frequency: -1 MHz
+1471685793.179280: IOCTL: bsd_set80211 112 ioctl_op = 9
+
+1471685793.179301: hostapd_setup_bss(hapd=0xfdc70 (wifi1), first=1)
+1471685793.179318: wifi1: Flushing old station entries
+1471685793.179332: wifi1: Deauthenticate all stations
+1471685793.179339: IOCTL: bsd_set80211 112 ioctl_op = 21
+
+1471685793.179359: bsd_set_privacy: enabled=0
+1471685793.179365: IOCTL: bsd_set80211 112 ioctl_op = 17
+
+1471685793.179376: bsd_set_key: alg=0 addr=(nil) key_idx=0 set_tx=0 seq_len=0 key_len=0
+1471685793.179386: bsd_del_key: key_idx=0
+1471685793.179390: IOCTL: bsd_set80211 112 ioctl_op = 20
+
+1471685793.179404: bsd_set_key: alg=0 addr=(nil) key_idx=1 set_tx=0 seq_len=0 key_len=0
+1471685793.179412: bsd_del_key: key_idx=1
+1471685793.179416: IOCTL: bsd_set80211 112 ioctl_op = 20
+
+1471685793.179424: bsd_set_key: alg=0 addr=(nil) key_idx=2 set_tx=0 seq_len=0 key_len=0
+1471685793.179431: bsd_del_key: key_idx=2
+1471685793.179435: IOCTL: bsd_set80211 112 ioctl_op = 20
+
+1471685793.179444: bsd_set_key: alg=0 addr=(nil) key_idx=3 set_tx=0 seq_len=0 key_len=0
+1471685793.179451: bsd_del_key: key_idx=3
+1471685793.179455: IOCTL: bsd_set80211 112 ioctl_op = 20
+
+1471685793.179475: Using interface wifi1 with hwaddr 00:23:a7:8d:0b:98 and ssid "REDPINE_AP"
+1471685793.179486: IOCTL: bsd_set80211 112 ioctl_op = 1
+
+1471685793.179538: WPS: Use configured UUID - hexdump(len=16): 12 34 56 78 9a bc de f0 12 34 56 78 9a bc de f0
+1471685793.179587: WPS: Converting display to virtual_display for WPS 2.0 compliance
+1471685793.179592: WPS: Converting push_button to virtual_push_button for WPS 2.0 compliance
+1471685793.179609: WPS: Build Beacon IEs
+1471685793.179613: WPS:  * Version (hardcoded 0x10)
+1471685793.179618: WPS:  * Wi-Fi Protected Setup State (2)
+1471685793.179647: WPS:  * Version2 (0x20)
+1471685793.179655: WPS:  * Device Name
+1471685793.179660: WPS:  * Primary Device Type
+1471685793.179664: WPS: Build Probe Response IEs
+1471685793.179668: WPS:  * Version (hardcoded 0x10)
+1471685793.179671: WPS:  * Wi-Fi Protected Setup State (2)
+1471685793.179675: WPS:  * Response Type (3)
+1471685793.179680: WPS:  * UUID-E
+1471685793.179684: WPS:  * Manufacturer
+1471685793.179689: WPS:  * Model Name
+1471685793.179693: WPS:  * Model Number
+1471685793.179697: WPS:  * Serial Number
+1471685793.179700: WPS:  * Primary Device Type
+1471685793.179703: WPS:  * Device Name
+1471685793.179707: WPS:  * Config Methods (2108)
+1471685793.179711: WPS:  * Version2 (0x20)
+1471685793.179735: WPS: Building WPS IE for (Re)Association Response
+1471685793.179740: WPS:  * Version (hardcoded 0x10)
+1471685793.179744: WPS:  * Response Type (3)
+1471685793.179747: WPS:  * Version2 (0x20)
+1471685793.179755: IOCTL: bsd_set80211 112 ioctl_op = 96
+
+1471685793.179768: Setting WPS IE FOR BEACON
+
+1471685793.179773: IOCTL: bsd_set80211 112 ioctl_op = 95
+
+1471685793.179788: Setting WPS IE FOR PROBE RESP
+
+1471685793.179792: IOCTL: bsd_set80211 112 ioctl_op = 95
+
+1471685793.179801: Setting WPS IE FOR PROBE RESP
+
+1471685793.179805: IOCTL: bsd_set80211 112 ioctl_op = 95
+
+1471685793.185125: WPS: Building WPS IE for (Re)Association Response
+1471685793.185147: WPS:  * Version (hardcoded 0x10)
+1471685793.185151: WPS:  * Response Type (3)
+1471685793.185155: WPS:  * Version2 (0x20)
+1471685793.185171: before calling bsd_ctrl_iface in bsd_commit and 2268
+
+1471685793.185180: IOCTL: bsd_ctrl_iface 296 enable = 1
+
+1471685793.192280: wifi1: interface state UNINITIALIZED->ENABLED
+1471685793.192387: wifi1: AP-ENABLED 
+1471685793.192409: wifi1: State: SCANNING -> COMPLETED
+1471685793.192426: wifi1: CTRL-EVENT-CONNECTED - Connection to 00:23:a7:8d:0b:98 completed [id=0 id_str=]
+1471685793.192440: wifi1: Setup of interface done.
+1471685793.192526: Malformed netlink message: len=1156 left=512 plen=1140
+
+1471685793.192537: 512 extra bytes in the end of n

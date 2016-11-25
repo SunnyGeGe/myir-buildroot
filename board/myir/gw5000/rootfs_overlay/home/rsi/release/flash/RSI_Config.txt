@@ -1,0 +1,44 @@
+//////////////////////////////////////////////////////////////////////////////////////////////
+// Following gudielines to be followed
+// 
+// 1) use // to comment a line
+// 2) value of any parameter should be given immediately after the '=' sign without any space
+//  
+//////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+//first 3 bytes of mac address
+RSI_VENDOR_ID=0023A7
+
+//set to 1 or 0 to enable or disable file logging
+//RSI_LOG_ENABLED=1
+
+//WIFI MAc Address Start mac cmpltd
+RSI_WLAN_START_MAC_ID=1B1560
+
+//WIFI Mac Address End   //cmpltd 
+RSI_WLAN_END_MAC_ID=1B1958
+
+//FLASH SIZE in hex for 1024KB is 400, for 2048KB is 800.
+RSI_FLASH_SIZE=400
+
+//BT MAC Address Start mac
+RSI_BT_START_MAC_ID=1B1958
+
+//BT MAC Address End  
+RSI_BT_END_MAC_ID=1B1A55
+
+//Zigbee MAc Address Start mac
+RSI_ZIGBEE_START_MAC_ID=000001
+
+//Zigbee Mac Address End  
+RSI_ZIGBEE_END_MAC_ID=00010C
+
+// NUM of WLAN Mac Addresses  
+RSI_NUM_OF_WLAN_MAC_IDS=04
+
+//run all tests
+CONTINUE_ON_FAILURE=0
+//upgrade eeprom
+PROMPT_EEPROM_UPGRADE=1
