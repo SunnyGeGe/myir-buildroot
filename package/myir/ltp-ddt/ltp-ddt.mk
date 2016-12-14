@@ -66,10 +66,11 @@ endef
 LTP_DDT_POST_PATCH_HOOKS += LTP_DDT_REMOVE_UNSUPPORTED
 endif
 
+LTP_DDT_POST_PATCH_HOOKS += LTP_DDT_MAKE_AUTOTOOLS
+
 define LTP_DDT_MAKE_AUTOTOOLS
 	cd $(@D) && make autotools
 endef
 
-LTP_DDT_POST_PATCH_HOOKS += LTP_DDT_MAKE_AUTOTOOLS
 
 $(eval $(autotools-package))
