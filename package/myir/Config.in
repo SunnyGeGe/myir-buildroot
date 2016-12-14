@@ -38,6 +38,7 @@ config BR2_PACKAGE_MYIR_PLATFORM
 	default "myd_y335x" if BR2_PACKAGE_PCBA_TEST_MYD_Y335X
 
 source "package/myir/pcba_test/Config.in"
+source "package/myir/ltp-ddt/Config.in"
 
 endif
 
