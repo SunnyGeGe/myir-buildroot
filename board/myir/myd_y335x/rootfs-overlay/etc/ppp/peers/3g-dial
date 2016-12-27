@@ -1,0 +1,25 @@
+debug
+logfile
+/var/log/pppd-ttyS3.log
+/dev/ttyUSB2
+115200
+defaultroute
+mtu 1420
+ipcp-accept-remote
+ipcp-accept-local
+lcp-echo-interval 60
+lcp-echo-failure 99999
+usepeerdns
+nopcomp
+noaccomp
+noipdefault
+local
+noauth
+modem
+crtscts
+novj
+nobsdcomp
+persist
+nodeflate
+connect "/usr/sbin/chat -v -t 50 -f /etc/ppp/chatscripts/3g-connect"
+#disconnect "/usr/sbin/chat -v -t 50 -f /etc/ppp/chatscripts/3g-disconnect"
