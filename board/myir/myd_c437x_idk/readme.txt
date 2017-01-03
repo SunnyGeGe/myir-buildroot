@@ -59,14 +59,14 @@ How to use it
   - Powreoff and poweron to boot from TF/SD card with ext4 partition on TF/SD card.
 
 3. Boot from Ethernet with NFS
-  - Enter U-boot console by press space when u-boot booting from TF/SD card.
+  - Enter U-boot console by press 'space' when u-boot booting from TF/SD card.
   - setenv serverip 192.168.1.2 ( nfs server and tftp server hosted on 192.168.1.2)
   - setenv ipaddr 192.168.1.100 ( set the ipaddr of myd_c437x_pru board)
   - setenv rootpath /home/sunny/export/rootfs ( exported nfs directory with /etc/exports file on nfs server)
   - run netboot
 
 4. Boot from Ethernet with ramdisk
-  - Enter U-boot console by press space when u-boot booting from TF/SD card.
+  - Enter U-boot console by press 'space' when u-boot booting from TF/SD card.
   - setenv serverip 192.168.1.2 ( nfs server and tftp server hosted on 192.168.1.2)
   - setenv ipaddr 192.168.1.100 ( set the ipaddr of myd_c437x_pru board)
   - setenv bootargs console=ttyO0,115200n8 root=/dev/ram0 rw rootfstype=ext2 ip=none earlyprintk
@@ -75,6 +75,13 @@ How to use it
   - tftpboot ${fdtaddr} myd_c437x_idk.dtb  ( myd_c437x_idk.dtb was copied to tftp server root directory)
   - bootz  ${loadaddr} ${rdaddr} ${fdtaddr}
 
+5. Boot from EMMC 
+  - Copy sdcard.img to TF/SD card.
+  - Boot from TF/SD card with ramdisk.
+  - Enter linux console and execute the command to write sdcard.img to emmc. 
+    # mount /dev/mmcblk0p1 /media
+    # dd bs=1M if=/media/sdcard.img of=/dev/mmcblk1
+  - Set bootmode to emmc and reboot
 
 Links
 ===============
