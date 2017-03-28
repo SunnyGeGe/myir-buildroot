@@ -5,7 +5,8 @@
 ################################################################################
 
 # This correpsonds to SDK 02.00.00.00
-TI_SGX_DEMOS_VERSION = f24650bc8243b25c23d6a0a502ed79fc472ac424
+#TI_SGX_DEMOS_VERSION = f24650bc8243b25c23d6a0a502ed79fc472ac424
+TI_SGX_DEMOS_VERSION = ca2d479543fc6884818604b32a66de8ffc77145f 
 TI_SGX_DEMOS_SITE = git://git.ti.com/graphics/img-pvr-sdk.git
 TI_SGX_DEMOS_LICENSE = Imagination Technologies License Agreement
 TI_SGX_DEMOS_LICENSE_FILES = LegalNotice.txt
