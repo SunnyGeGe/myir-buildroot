@@ -1,0 +1,4 @@
+config BR2_PACKAGE_SERIALCHECK
+	bool "serialcheck tool"
+	help
+	  serialcheck tool from git://git.breakpoint.cc/bigeasy/serialcheck.git.
