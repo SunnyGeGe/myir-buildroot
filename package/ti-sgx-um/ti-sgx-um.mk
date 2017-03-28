@@ -5,7 +5,8 @@
 ################################################################################
 
 # This correpsonds to SDK 02.00.00.00
-TI_SGX_UM_VERSION = e15f1543bab4de9e8927a2c4934addf3fd16ffcb
+#TI_SGX_UM_VERSION = e15f1543bab4de9e8927a2c4934addf3fd16ffcb
+TI_SGX_UM_VERSION = 84ae5444c7cbc3f4c65a226b9fea62d4a513f3e0
 TI_SGX_UM_SITE = git://git.ti.com/graphics/omap5-sgx-ddk-um-linux.git
 TI_SGX_UM_LICENSE = TI TSPA License
 TI_SGX_UM_LICENSE_FILES = OMAP5-Linux-Graphics-DDK-UM-Manifest.doc
