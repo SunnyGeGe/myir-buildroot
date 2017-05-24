@@ -1,0 +1,19 @@
+hide-password
+noauth
+connect "/usr/sbin/chat -v -t 50 -f /etc/ppp/chatscripts/gprs-chat"
+ 
+#debug
+logfile
+/var/log/pppd-gprs.log
+/dev/ttyUSB0
+460800
+defaultroute
+noipdefault
+local
+lock
+dump
+#nodetach
+user " "
+remotename cmnet
+ipparam cmnet
+usepeerdns

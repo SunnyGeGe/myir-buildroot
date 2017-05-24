@@ -1,0 +1,16 @@
+#!/bin/sh
+
+if [ ! -z $DNS1 ];then
+	if ! grep $DNS1 /etc/resolv.conf ;then
+		echo "nameserver $DNS1" >> /etc/resolv.conf
+	fi
+fi
+
+if [ ! -z $DNS2 ];then
+        if ! grep $DNS2 /etc/resolv.conf ;then
+		echo "nameserver $DNS2" >> /etc/resolv.conf                                     
+        fi                                       
+fi
+
+#cat /etc/ppp/resolv.conf >> /etc/resolv.conf
+

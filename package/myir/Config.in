@@ -11,8 +11,8 @@ choice
 config BR2_PACKAGE_PCBA_TEST_MYD_C437X_IDK
 	bool "myd_c437x_idk"
 
-config BR2_PACKAGE_PCBA_TEST_MYD_C437X
-	bool "myd_c437x"
+config BR2_PACKAGE_PCBA_TEST_MYD_C437X_EVM
+	bool "myd_c437x_evm"
 
 config BR2_PACKAGE_PCBA_TEST_RICOBOARD
 	bool "ricoboard"
@@ -31,7 +31,7 @@ endchoice
 config BR2_PACKAGE_MYIR_PLATFORM
 	string
 	default "myd_c437x_idk" if BR2_PACKAGE_PCBA_TEST_MYD_C437X_IDK
-	default "myd_c437x_all" if BR2_PACKAGE_PCBA_TEST_MYD_C437X
+	default "myd_c437x_evm" if BR2_PACKAGE_PCBA_TEST_MYD_C437X_EVM
 	default "ricoboard" if BR2_PACKAGE_PCBA_TEST_RICOBOARD
 	default "myd_c335x" if BR2_PACKAGE_PCBA_TEST_MYD_C335X
 	default "myd_j335x" if BR2_PACKAGE_PCBA_TEST_MYD_J335X
