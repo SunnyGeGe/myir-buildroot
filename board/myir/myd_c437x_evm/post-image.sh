@@ -5,9 +5,15 @@
 BOARD_DIR="$(dirname $0)"
 
 # copy the uEnv.txt to the output/images directory
+mkdir -p $BINARIES_DIR/uEnv
 cp board/myir/myd_c437x_evm/uEnv.txt $BINARIES_DIR/uEnv.txt
+cp board/myir/myd_c437x_evm/uEnv_hdmi.txt $BINARIES_DIR/uEnv_hdmi.txt
 cp board/myir/myd_c437x_evm/uEnv_mmc.txt $BINARIES_DIR/uEnv_mmc.txt
 cp board/myir/myd_c437x_evm/uEnv_ramdisk.txt $BINARIES_DIR/uEnv_ramdisk.txt
+cp board/myir/myd_c437x_evm/uEnv.txt $BINARIES_DIR/uEnv/uEnv.txt
+cp board/myir/myd_c437x_evm/uEnv_hdmi.txt $BINARIES_DIR/uEnv/uEnv_hdmi.txt
+cp board/myir/myd_c437x_evm/uEnv_mmc.txt $BINARIES_DIR/uEnv/uEnv_mmc.txt
+cp board/myir/myd_c437x_evm/uEnv_ramdisk.txt $BINARIES_DIR/uEnv/uEnv_ramdisk.txt
 cp board/myir/myd_c437x_evm/readme.txt $BINARIES_DIR/readme.txt
 mkimage -A arm -O linux -T ramdisk -C none -a 0x88080000 -n "ramdisk" -d $BINARIES_DIR/rootfs.cpio.gz $BINARIES_DIR/ramdisk.gz
 
