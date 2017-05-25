@@ -89,7 +89,6 @@ check_for_sdcards()
 	done
 	
 	if [ ! -d "$SD_MOUNT_POINT" ]; then
-		echo "mkdir=="
 		busybox mkdir -p $SD_MOUNT_POINT
 	fi
 
