@@ -1,0 +1,10 @@
+#TIMEOUT 15
+ABORT '\nBUSY\r'
+ABORT '\nNO ANSWER\r'
+ABORT '\nRINGING\r\n\r\nRINGING\r'
+ABORT '\n+CME ERROR: 100\r'
+
+'' ATH
+'' ATH
+'' ATH
+SAY "\nDisconnected!\n"

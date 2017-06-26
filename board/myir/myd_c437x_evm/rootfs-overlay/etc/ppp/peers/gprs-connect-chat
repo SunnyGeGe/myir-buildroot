@@ -1,0 +1,15 @@
+#/etc/ppp/peers/gprs-connect-chat
+TIMEOUT         15
+ABORT           "DELAYED"
+ABORT           "BUSY"
+ABORT           "ERROR"
+ABORT           "NO DIALTONE"
+ABORT           "NO CARRIER"
+TIMEOUT         40
+''              	 \rAT
+OK              AT#GAUTH=0
+OK              ATS0=0
+OK              ATE0V1
+OK              AT+CGDCONT=1,"IP"," CMNET"
+OK              ATDT*99***1#
+CONNECT         ''
