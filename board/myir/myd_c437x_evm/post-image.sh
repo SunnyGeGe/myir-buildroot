@@ -17,7 +17,6 @@ cp board/myir/myd_c437x_evm/uEnv_ramdisk.txt $BINARIES_DIR/uEnv/uEnv_ramdisk.txt
 cp board/myir/myd_c437x_evm/readme.txt $BINARIES_DIR/readme.txt
 mkimage -A arm -O linux -T ramdisk -C none -a 0x88080000 -n "ramdisk" -d $BINARIES_DIR/rootfs.cpio.gz $BINARIES_DIR/ramdisk.gz
 
-
 GENIMAGE_CFG="${BOARD_DIR}/genimage.cfg"
 GENIMAGE_TMP="${BUILD_DIR}/genimage.tmp"
 
