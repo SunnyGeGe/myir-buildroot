@@ -5,7 +5,7 @@ if grep "updatesys_from_usbmsc_to_emmc" /proc/cmdline > /dev/null;then
 	echo "*** SYSTEM UPDATE FROM USBMSC TO EMMC *********"
 	echo "***********************************************"
 	echo
-	/etc/modules-load.myd/updatesys.sh loader2emmc usbmsc
+	yes | /etc/modules-load.myd/updatesys.sh loader2emmc usbmsc
 fi
 if grep "updatesys_from_sd_to_emmc" /proc/cmdline > /dev/null;then
 	echo
@@ -13,7 +13,7 @@ if grep "updatesys_from_sd_to_emmc" /proc/cmdline > /dev/null;then
 	echo "*** SYSTEM UPDATE FROM SDCARD TO EMMC *********"
 	echo "***********************************************"
 	echo
-	/etc/modules-load.myd/updatesys.sh loader2emmc sd
+	yes | /etc/modules-load.myd/updatesys.sh loader2emmc sd
 fi
 #! /bin/sh
 if grep "updatesys_from_usbmsc_to_nand" /proc/cmdline > /dev/null;then
@@ -22,7 +22,7 @@ if grep "updatesys_from_usbmsc_to_nand" /proc/cmdline > /dev/null;then
 	echo "*** SYSTEM UPDATE FROM USBMSC TO NAND *********"
 	echo "***********************************************"
 	echo
-	/etc/modules-load.myd/updatesys.sh loader2nand usbmsc
+	yes | /etc/modules-load.myd/updatesys.sh loader2nand usbmsc
 fi
 if grep "updatesys_from_sd_to_nand" /proc/cmdline > /dev/null;then
 	echo
@@ -30,5 +30,5 @@ if grep "updatesys_from_sd_to_nand" /proc/cmdline > /dev/null;then
 	echo "*** SYSTEM UPDATE FROM SDCARD TO NAND *********"
 	echo "***********************************************"
 	echo
-	/etc/modules-load.myd/updatesys.sh loader2nand sd
+	yes | /etc/modules-load.myd/updatesys.sh loader2nand sd
 fi
