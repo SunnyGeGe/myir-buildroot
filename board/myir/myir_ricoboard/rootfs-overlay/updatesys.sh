@@ -41,9 +41,9 @@ check_for_emmc()
 	#
 	# Check the eMMC was whether identified or not
 	#
-	if [ -d  /sys/bus/mmc/devices/mmc1:0001/block/mmcblk0/ ]; then
+	if [ -d  /sys/bus/mmc/devices/mmc1:*/block/mmcblk0/ ]; then
 		EMMC_DRIVE="/dev/mmcblk0"
-	elif [ -d  /sys/bus/mmc/devices/mmc1:0001/block/mmcblk1/ ]; then
+	elif [ -d  /sys/bus/mmc/devices/mmc1:*/block/mmcblk1/ ]; then
 		EMMC_DRIVE="/dev/mmcblk1"
 	else
 		echo -e "===> No valid emmc"
@@ -68,10 +68,10 @@ check_for_sdcards()
 	while true; do
 	SD_DRIVE=""
 	# Find the avaible SD cards
-	if [ -d  /sys/bus/mmc/devices/mmc0:0001/block/mmcblk0/ ]; then
+	if [ -d  /sys/bus/mmc/devices/mmc0:*/block/mmcblk0/ ]; then
 		SD_DRIVE="/dev/mmcblk0"
 		break
-	elif [ -d  /sys/bus/mmc/devices/mmc0:0001/block/mmcblk1/ ]; then
+	elif [ -d  /sys/bus/mmc/devices/mmc0:*/block/mmcblk1/ ]; then
 		SD_DRIVE="/dev/mmcblk1"
 		break
 	else
