@@ -30,7 +30,7 @@ sed -i '$a\extra/cryptodev.ko:' ./lib/modules/4.1.18/modules.dep
 gzip -d $BINARIES_DIR/matrix-rootfs.tar.gz
 tar rvf $BINARIES_DIR/matrix-rootfs.tar ./lib/modules/4.1.18
 gzip -9 -c $BINARIES_DIR/matrix-rootfs.tar  > $BINARIES_DIR//matrix-rootfs.tar.gz
-rm -rf ./lib/modules/4.1.18
+rm -rf ./lib
 
 GENIMAGE_CFG="${BOARD_DIR}/genimage.cfg"
 GENIMAGE_TMP="${BUILD_DIR}/genimage.tmp"
