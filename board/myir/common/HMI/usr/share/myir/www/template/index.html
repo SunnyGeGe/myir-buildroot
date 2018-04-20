@@ -1,0 +1,668 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>米尔科技</title>
+	<meta name="description" content="米尔科技" />
+	<meta name="keywords" content="米尔科技" />
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="generator" content="米尔科技"/>
+	<link href="favicon.ico" rel="shortcut icon" />
+	<link rel="stylesheet" type="text/css" href="statics/css/style.css" />
+</head>
+<body>
+	<header>
+		<img src="statics/images/logo.png">
+	</header>
+	<div id="main">
+		<div id="left">
+			<span class="menus menu1">&nbsp;</span>
+			<span class="menus menu2">&nbsp;</span>
+			<span class="menus menu3">&nbsp;</span>
+			<span class="menus menu4">&nbsp;</span>
+			<span class="menus menu5" id="ETH_UPDATE">&nbsp;</span>
+		</div>
+		<div id="right">
+			<section class="tab">
+				<h2>LED控制</h2>
+
+				<!--<div class="red menu  menu">&nbsp;</div>-->
+				<!--<label class="second menu"  style="font-size: 30px;" for="male">Male</label>-->
+				<!--<div class="   second menu  menu">&nbsp;</div>-->
+
+				<div class="one_item">
+					<select id="led_select_0" name="name">
+						<option id="led_name_t" value=" " selected>
+						<!--&lt;!&ndash;<option value="测试选项">测试选项&ndash;&gt;-->
+					<!--</select>-->
+					<!---->
+					<input class="button menu" str_op="led_open_1" onclick="led_sendMsg($(this).attr('str_op'))" type="button" value="LED_OPEN"></input>
+					<input class="button second menu" str_op="led_close_1" onclick="led_sendMsg($(this).attr('str_op'))" type="button" value="LED_CLOSE"></input>
+				</div>
+				<div class="one_item">
+					<select id="led_select_1"  name="name">
+						<option id="led_name2" value=" " selected>
+						<!--<option value="测试选项">测试选项-->
+					</select>
+					<input class="button menu" str_op="led_open_2" onclick="led_sendMsg($(this).attr('str_op'))" type="button" value="LED_OPEN"></input>
+					<input class="button second menu" str_op="led_close_2" onclick="led_sendMsg($(this).attr('str_op'))" type="button" value="LED_CLOSE"></input>
+				</div>
+				<div class="one_item">
+					<select id="led_select_2" name="name">
+						<!--<option id="led_name3" value=" " selected>-->
+						<!--<option value="测试选项">测试选项-->
+					</select>
+					<input class="button menu" str_op="led_open_3" onclick="led_sendMsg($(this).attr('str_op'))" type="button" value="LED_OPEN"></input>
+					<input class="button second menu" str_op="led_close_3" onclick="led_sendMsg($(this).attr('str_op'))" type="button" value="LED_CLOSE"></input>
+				</div>
+			</section>
+			<section class="tab">
+				<h2>RS232测试</h2>
+				<table>
+				<tr>
+					<td>
+					端口
+					<select id="rs232_port_name" name="name" str_op="RS232_CHANGE" onchange="change_PARAMETER($(this).attr('str_op'));">
+						<!--<option id="RS232_NAME" value="/dev/ttymxc8" selected>/dev/ttymxc8-->
+						<!--<option value="/dev/ttymxc3">/dev/ttymxc0-->
+					</select>
+					&nbsp;波特率
+					<select id="rs232_baud_rate" name="name" str_op="RS232_CHANGE" onchange="change_PARAMETER($(this).attr('str_op'));">
+						<option value="9600" selected>9600
+						<option value="19200">19200
+						<option value="38400">38400
+						<option value="56000">56000
+						<option value="576000">576000
+						<option value="115200">115200
+					</select>
+					&nbsp;数据位
+					<select id="rs232_databit" name="name" str_op="RS232_CHANGE" onchange="change_PARAMETER($(this).attr('str_op'));">
+						<option value="8" selected>8
+						<option value="7">7
+						<option value="6">6
+					</select>
+					&nbsp;校验位
+					<select id="rs232_checkbit" name="name" str_op="RS232_CHANGE" onchange="change_PARAMETER($(this).attr('str_op'));">
+						<option value="NONE" selected>NONE
+						<option value="E">E
+						<option value="O">O
+					</select>
+					&nbsp;停止位
+					<select id="rs232_stopbit" name="name" str_op="RS232_CHANGE" onchange="change_PARAMETER($(this).attr('str_op'));">
+						<option value="1" selected>1
+						<option value="2">2
+					</select>
+					</td>
+				</tr>
+				<tr>
+					<td>
+					<input class="button mright50 menu" id="rs232_button"  str_op="open"  onclick="uart_sendMsg($(this).attr('str_op'),value)" type="button" value="打开串口"></input>
+					<!--<input class="button mright50 menu" id="rs232_close" str_op="close" onclick="uart_sendMsg($(this).attr('str_op'))" type="button" value="关闭串口"></input>-->
+					<!--<input class="button mright50 menu" id="rs232_set"   str_op="set"   onclick="uart_sendMsg($(this).attr('str_op'))" type="button" value="设置串口"></input>-->
+					</td>
+				</tr>
+				<tr>
+					<td>
+					发送内容：
+					<textarea id="rs232_buf_data" name="" rows="5" cols="100"></textarea>
+					<input class="button on fr" str_op="send" onclick="uart_sendMsg($(this).attr('str_op'),value)" type="button" value="发送"></input>
+					</td>
+				</tr>
+				<tr>
+					<td>
+					接收内容：
+					<textarea id="rs232_recv_data" name="" rows="5" cols="100"></textarea>
+					<input class="button orange fr"  str_op="clear" onclick="uart_sendMsg($(this).attr('str_op'),value)" type="button" value="清空"></input>
+					</td>
+				</tr>
+				</table>
+			</section>
+			<section class="tab">
+				<h2>RS485测试</h2>
+				<table>
+				<tr>
+					<td>
+					端口
+					<select id="rs485_port_name" name="name">
+						<!--<option value="/dev/ttymxc1" selected>/dev/ttymxc1-->
+						<!--<option value="/dev/ttymxc3">/dev/ttymxc3-->
+					</select>
+					&nbsp;波特率
+					<select id="rs485_baud_rate" name="name" id="RS485_CHANGE" str_op="RS232_CHANGE" onchange="change_PARAMETER($(this).attr('str_op'));">
+						<option value="9600" selected>9600
+						<option value="19200">19200
+						<option value="38400">38400
+						<option value="56000">56000
+						<option value="576000">576000
+						<option value="115200">115200
+					</select>
+					&nbsp;数据位
+					<select id="rs485_databit" name="name" str_op="RS485_CHANGE" onchange="change_PARAMETER($(this).attr('str_op'));">
+						<option value="8" selected>8
+						<option value="7">7
+						<option value="6">6
+					</select>
+					&nbsp;检验位
+					<select id="rs485_checkbit" name="name" str_op="RS485_CHANGE" onchange="change_PARAMETER($(this).attr('str_op'));">
+						<option value="NONE" selected>NONE
+						<option value="E">E
+						<option value="O">O
+					</select>
+					&nbsp;停止位
+					<select  id="rs485_stopbit" name="name" str_op="RS485_CHANGE" onchange="change_PARAMETER($(this).attr('str_op'));">
+						<option value="1" selected>1
+						<option value="2">2
+					</select>
+					</td>
+				</tr>
+				<tr>
+					<td>
+					<input class="button mright50 menu" id="rs485_button" str_op="open"  onclick="uart485_sendMsg($(this).attr('str_op'),value)" type="button" value="打开串口"></input>
+					<!--<input class="button mright50 menu" str_op="close"  onclick="uart485_sendMsg($(this).attr('str_op'))" type="button" value="关闭串口"></input>-->
+					<!--<input class="button mright50 menu" str_op="set"  onclick="uart485_sendMsg($(this).attr('str_op'))" type="button" value="设置串口"></input>-->
+					</td>
+				</tr>
+				<tr>
+					<td>
+					发送内容：
+					<textarea id="rs485_buf_data" name="" rows="5" cols="100"></textarea>
+					<input class="button on fr" str_op="send"  onclick="uart485_sendMsg($(this).attr('str_op'),value)" type="button" value="发送"></input>
+					</td>
+				</tr>
+				<tr>
+					<td>
+					接收内容：
+					<textarea id="rs485_recv_data" name="" rows="5" cols="100"></textarea>
+					<input class="button orange fr" str_op="clear" onclick="uart485_sendMsg($(this).attr('str_op'),value)" type="button" value="清空"></input>
+					</td>
+				</tr>
+				</table>
+			</section>
+			<section class="tab">
+				<h2>CAN参数设置</h2>
+				<table>
+				<tr>
+					<td>
+					端口
+					<select id="can_name" name="name" str_op="CAN_CHANGE" onchange="change_PARAMETER($(this).attr('str_op'));">
+						<option value="can0" selected>can0
+						<option value="can1">can1
+					</select>
+					&nbsp;&nbsp;&nbsp;&nbsp;波特率
+					<select id="can_baudrate" name="name" str_op="CAN_CHANGE" onchange="change_PARAMETER($(this).attr('str_op'));">
+						<option value="20" selected>20 KBPS
+						<option value="50">50 KBPS
+						<option value="125">125 KBPS
+						<option value="250">250 KBPS
+						<option value="500">500 KBPS
+						<option value="800">800 KBPS
+						<option value="1000">1000 KBPS
+					</select>
+					&nbsp;&nbsp;&nbsp;&nbsp;回环
+					<select id="can_loop" name="name" str_op="CAN_CHANGE" onchange="change_PARAMETER($(this).attr('str_op'));">
+						<option value="OFF" selected>OFF
+						<option value="ON">ON
+					</select>
+					</td>
+				</tr>
+				<tr>
+					<td>
+					<input class="button mright50 menu" id="can_button" str_op="open"  onclick="can_sendMsg($(this).attr('str_op'),value)" type="button" value="打开CAN"></input>
+					<!--<input class="button mright50 menu" str_op="close"  onclick="can_sendMsg($(this).attr('str_op'))" type="button" value="关闭CAN"></input>-->
+					<!--<input class="button mright50 menu" str_op="set"  onclick="can_sendMsg($(this).attr('str_op'))" type="button" value="设置CAN"></input>-->
+					</td>
+				</tr>
+				<tr>
+					<td>
+					Can ID：
+					<input id="can_id" type="text"  value="100"  style="width:8%;height:15px">
+					</td>
+				</tr>
+				<tr>
+					<td>
+					发送内容：
+					<textarea id="can_buf_data" name="" rows="5" cols="100"></textarea>
+					<input class="button on fr" str_op="send"  onclick="can_sendMsg($(this).attr('str_op'))" type="button" value="发送"></input>
+					</td>
+				</tr>
+				<tr>
+					<td>
+					接收内容：
+					<textarea id="can_recv_data" name="" rows="5" cols="100"></textarea>
+					<input class="button orange fr" str_op="clear"  onclick="can_sendMsg($(this).attr('str_op'))" type="button" value="清空"></input>
+
+						    <div id="result" align="center">
+        <div style="width: 70%" id="recv_data">
+                <!-- 接收内容 -->
+        </div>
+    </div>
+
+					</td>
+				</tr>
+				</table>
+			</section>
+			<section class="tab">
+				<h2>网卡设置</h2>
+				<div class="nav">
+					<span data="0">网口1</span>
+					<span data="1">网口2</span>
+				</div>
+				<div id="eth0_id" class="nav_item">
+					<table>
+					<tr>
+						<td>
+						IP地址
+						<input id="ip_eth0" type="text" name="name"></input>
+						&nbsp;&nbsp;&nbsp;&nbsp;子网掩码
+						<input id="netmask_eth0" type="text" name="name"></input>
+						&nbsp;&nbsp;&nbsp;&nbsp;默认网关
+						<input id="gateway_eth0" type="text" name="name"></input>
+						</td>
+					</tr>
+					<tr>
+						<td>
+						<!--<input class="button mright50 menu" type="button" value="使用网卡"></input>-->
+						<!--<input class="button mright50 menu" type="button" value="关闭网卡"></input>-->
+						<input  class="button mright50 menu" str_op="eth0_set_ing"  onclick="eth_sendMsg($(this).attr('str_op'))" type="button" value="设置网卡"></input>
+						<input  class="button mright50 menu"  str_op="eth0_udhcpc_ing" onclick="eth_sendMsg($(this).attr('str_op'))" type="button" value="自动获取IP"></input>
+						</td>
+					</tr>
+					<tr>
+						<td>
+						网址：
+						<input id="dest_ip0" class="site" type="text" name="name" ></input>
+
+						</td>
+					</tr>
+					<tr>
+						<td>
+						测试log：
+						<textarea id="eth0_ping_data" name="" rows="5" cols="100"></textarea>
+						<input  class="button on fr" str_op="eth0_test"  onclick="eth_sendMsg($(this).attr('str_op'))" type="button" value="测试"></input>
+						</td>
+					</tr>
+					</table>
+				</div>
+				<div id="eth1_id" class="nav_item" style="display:none;">
+					<table>
+					<tr>
+						<td>
+						IP地址
+						<input id="ip_eth1" type="text" name="name"></input>
+						&nbsp;&nbsp;&nbsp;&nbsp;子网掩码
+						<input id="netmask_eth1" type="text" name="name"></input>
+						&nbsp;&nbsp;&nbsp;&nbsp;默认网关
+						<input id="gateway_eth1" type="text" name="name"></input>
+						</td>
+					</tr>
+					<tr>
+						<td>
+						<!--<input class="button mright50 menu" type="button" value="使用网卡"></input>-->
+						<!--<input class="button mright50 menu" type="button" value="关闭网卡"></input>-->
+						<input  class="button mright50 menu" str_op="eth1_set_ing"  onclick="eth_sendMsg($(this).attr('str_op'))" type="button" value="设置网卡"></input>
+						<input  class="button mright50 menu" str_op="eth1_udhcpc_ing"  onclick="eth_sendMsg($(this).attr('str_op'))"  type="button" value="自动获取IP"></input>
+						</td>
+					</tr>
+					<tr>
+						<td>
+						网址：
+						<input id="dest_ip1" class="site" type="text" name="name" ></input>
+						</td>
+					</tr>
+					<tr>
+						<td>
+						测试log：
+						<textarea id="eth1_ping_data"name="" rows="5" cols="100"></textarea>
+						<input  str_op="eth1_test"  onclick="eth_sendMsg($(this).attr('str_op'))" class="button on fr" type="button" value="测试"></input>
+						</td>
+					</tr>
+					</table>
+				</div>
+			</section>
+		</div>
+		<div class="clear"></div>
+	</div>
+	<footer>
+		@2017 米尔科技版权所有
+	</footer>
+</body>
+<script src="statics/css/jquery.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".menus").click(function(){
+		var index = 1+$(".menus").index(this);
+		$(".menus").each(function(){
+			var index = 1+$(".menus").index(this);
+			$(this).removeClass("menu"+index+"_on");
+			$(this).addClass("menu"+index);
+		});
+		$(this).removeClass("menu"+index);
+		$(this).addClass("menu"+index+"_on");
+		$(".tab").each(function(){
+			var tab = 1+$(".tab").index(this);
+			if(tab==index){
+				$(this).show();
+			}else{
+				$(this).hide();
+			}
+		});
+	});
+	$(".menu1").click();
+	$(".menu").click(function(){
+		$(this).parent().children(".menu").removeClass("on");
+		$(this).addClass("on");
+
+		// 此处添加有bug
+		$("#ETH_UPDATE").click(function(arg){
+			var data = new Object;
+			data.cmd="eth_cmd_upate";
+			data.upate_cmd="eth_cmd_upate";
+			var str = JSON.stringify(data);
+			ws.send(str);
+		});
+	});
+	$(".nav span").click(function(){
+		var index = $(this).attr('data');
+		if(index == 0){
+			$(this).parent().attr("class",'nav');
+		}
+		if(index == 1){
+			$(this).parent().attr("class",'nav2');
+		}
+		$(".nav_item").hide();
+		$(".nav_item:eq("+index+")").show();
+
+	});
+});
+</script>
+<script type="text/javascript">
+		var ws = new WebSocket("ws://{{info_ip}}:{{info_port_eth}}/{{info_event}}"); // 新建一个ws连接
+        ws.onopen = function() {
+			ledlist_sendMsg();
+        };
+        ws.onmessage = function(e){
+            var data = e.data;
+            var obj = $.parseJSON(data);
+			if(obj.name_cmd=="rs232_recv_data"){
+			    var temp_232=document.getElementById('rs232_recv_data').value;
+				document.getElementById('rs232_recv_data').value= temp_232+obj.data_buff;
+			}else if(obj.name_cmd=="rs485_recv_data"){
+			    var temp_485=document.getElementById('rs485_recv_data').value;
+				document.getElementById('rs485_recv_data').value= temp_485+obj.data_buff;
+			}else if(obj.name_cmd=="can_recv_data"){
+			    var temp_can=document.getElementById('can_recv_data').value+"\n";
+				document.getElementById('can_recv_data').value= temp_can+"can id :"+obj.data_id+"can data:"+obj.data_buff;
+			}else if(obj.name_cmd=="led_recv_data"){
+				var led_name;
+				var led_value;
+				var led_seclect_t = new Array("led_select_0","led_select_1","led_select_2")
+				var  led_data = obj.data_buff.split("\n");
+				 for (var i = 0; i < led_data.length-1; i++){
+				     if(i>3) break;
+				     var Median_str=led_data[i].split(" ")
+					 led_name=Median_str[0];
+					 led_value=Median_str[1];
+					 add_select_option(led_seclect_t[i],led_name);
+				}
+			}else if(obj.name_cmd=="configure_cmd"){
+				add_select_option("rs232_port_name",obj.rs232_port);
+				add_select_option("rs485_port_name",obj.rs485_port);
+			}else if(obj.name_cmd=="eth_data"){
+			    if(obj.control=="data_buff"){
+                    for(var i=0;i<obj.eth_number;i++){
+						if(obj.list_data[i*5]=="eth0"){
+							document.getElementById('ip_eth0').value = obj.list_data[i*5+2];
+							document.getElementById('netmask_eth0').value = obj.list_data[3+i*5];
+							document.getElementById('gateway_eth0').value = obj.list_data[4+i*5];
+						}
+						if(obj.list_data[i*5]=="eth1"){
+							document.getElementById('ip_eth1').value = obj.list_data[2+i*5];
+							document.getElementById('netmask_eth1').value = obj.list_data[3+i*5];
+							document.getElementById('gateway_eth1').value = obj.list_data[4+i*5];
+						}
+						if(obj.list_data[i*5]=="eth2"){
+							document.getElementById('ip_eth0').value = obj.list_data[2+i*5];
+							document.getElementById('netmask_eth0').value = obj.list_data[3+i*5];
+							document.getElementById('gateway_eth0').value = obj.list_data[4+i*5];
+						}
+					}
+				}else if(obj.control=="ping")
+				{   var log_ping;
+					if(obj.eth_name=="eth0")
+					{
+					    log_ping=document.getElementById('eth0_ping_data').value;
+						document.getElementById('eth0_ping_data').value = log_ping+"\n"+obj.ping_data;
+					}
+					else if(obj.eth_name=="eth1"){
+					 	log_ping=document.getElementById('eth1_ping_data').value;
+					 	document.getElementById('eth1_ping_data').value = log_ping+"\n"+obj.ping_data;
+					}
+
+				}
+			}else if(obj.name_cmd=="status_data"){
+//				alert("status_data");
+				if(obj.name_status=="RS232_STATUS"){
+//				    alert("status_data");
+				    if(obj.status_operation=="successed"){
+				    	document.getElementById('rs232_button').value = "关闭串口";
+					}
+                }else if(obj.name_status=="RS485_STATUS"){
+					if(obj.status_operation=="successed"){
+				    	document.getElementById('rs485_button').value = "关闭串口";
+					}
+				}else if(obj.name_status=="CAN_STATUS"){
+					if(obj.status_operation=="successed"){
+				    	document.getElementById('can_button').value = "关闭CAN";
+					}
+				}
+			}
+
+        }
+
+//		动态添加下拉列表项
+        function add_select_option (arg,arg1) {
+			       var cbbYear = document.getElementById(arg);
+                    for (var i = 0; i < 1; i++) {
+						//方法1
+						var opt = document.createElement("option");
+						opt.innerHTML = arg1;
+						cbbYear.appendChild(opt);
+						//方法2
+						// var opt = new Option(i, i);
+						// cbbYear.options.add(opt);
+
+						// 设置当前选项使能
+						var all_options = document.getElementById(arg).options;
+							all_options[all_options.length-1].selected = true;
+                    }
+        }
+
+//led control
+		function ledlist_sendMsg(arg){
+			var data = new Object;
+			data.cmd="led_cmd";
+			data.control=2;
+			data.name="led_list";
+			var str = JSON.stringify(data);
+			ws.send(str);
+		}
+         function led_sendMsg(arg){
+			var data = new Object;
+			data.cmd="led_cmd";
+			switch (arg){
+				case "led_open_1":
+					data.control=1;
+					data.name=document.getElementById("led_select_0").value;
+					break;
+				case "led_close_1":
+				    data.control=0;
+					data.name=document.getElementById("led_select_0").value;
+					break;
+				case "led_open_2":
+				    data.control=1;
+					data.name=document.getElementById("led_select_1").value;
+					break;
+				case "led_close_2":
+					data.control=0;
+					data.name=document.getElementById("led_select_1").value;
+					break;
+				case "led_open_3":
+				    data.control=1;
+					data.name=document.getElementById("led_select_2").value;
+					break;
+				case "led_close_3":
+					data.control=0;
+					data.name=document.getElementById("led_select_2").value;
+					break;
+			}
+			var str = JSON.stringify(data);
+			ws.send(str);
+        }
+
+//uart  232
+         function uart_sendMsg(arg,arg2){
+			var data = new Object;
+//				alert(arg2);
+			data.cmd="uart_cmd";
+			data.control = 11;
+			if(arg=="open"){
+			    if(arg2=="打开串口"){
+					data.control = 1;
+					data.name = document.getElementById("rs232_port_name").value;
+					// set parameter
+					data.baud_rate=document.getElementById("rs232_baud_rate").value;
+					data.databit=document.getElementById("rs232_databit").value;
+					data.checkbit=document.getElementById("rs232_checkbit").value;
+					data.stopbit=document.getElementById("rs232_stopbit").value;
+				}else if(arg2=="关闭串口"){
+					data.control = 0;
+			     	data.name=document.getElementById("rs232_port_name").value;
+			     	document.getElementById('rs232_button').value = "打开串口";
+				}
+			}else if(arg=="send"){
+			    data.control = 3;
+				data.buf_data=document.getElementById("rs232_buf_data").value;
+			}else if(arg=="clear")
+			{
+			 	document.getElementById("rs232_recv_data").value=" ";
+			 	return;
+			}else ;
+			var str = JSON.stringify(data);
+			ws.send(str);
+        }
+// rs485
+         function uart485_sendMsg(arg,arg2){
+			var data = new Object;
+			data.cmd="uart485_cmd";
+			data.control = 11;
+			 if(arg=="open"){
+			    if(arg2=="打开串口"){
+					data.control = 1;
+					data.name = document.getElementById("rs485_port_name").value;
+					// set parameter
+					data.baud_rate=document.getElementById("rs485_baud_rate").value;
+					data.databit=document.getElementById("rs485_databit").value;
+					data.checkbit=document.getElementById("rs485_checkbit").value;
+					data.stopbit=document.getElementById("rs485_stopbit").value;
+				}else if(arg2=="关闭串口"){
+	  				data.control =0;
+			     	data.name=document.getElementById("rs485_port_name").value;
+			     	document.getElementById('rs485_button').value = "打开串口";
+				}
+			}else if(arg=="send"){
+			    data.control = 3;
+				data.buf_data=document.getElementById("rs485_buf_data").value;
+			}else if(arg=="clear")
+			{
+			 	document.getElementById("rs485_recv_data").value=" ";
+			 	return;
+			}else ;
+			var str = JSON.stringify(data);
+			ws.send(str);
+        }
+// can
+         function can_sendMsg(arg,arg2){
+			var data = new Object;
+			data.cmd="can_cmd";
+			data.control = 11;
+			data.name = document.getElementById("can_name").value;
+			data.can_id = document.getElementById("can_id").value;
+			data.can_loop = document.getElementById("can_loop").value;
+			data.baud_rate=document.getElementById("can_baudrate").value;
+
+			if(arg=="open") {
+				if (arg2 == "打开CAN") {
+					data.control = 1;
+					data.name = document.getElementById("can_name").value;
+					data.baud_rate=document.getElementById("can_baudrate").value;
+				}else if(arg2 == "关闭CAN"){
+					data.control =0;
+				 	data.name=document.getElementById("can_name").value;
+					document.getElementById('can_button').value = "打开CAN";
+				}
+			}else if(arg=="close")
+			{    data.control =0;
+				 data.name=document.getElementById("can_name").value;
+			}else if(arg=="set")
+			{   data.control = 2;
+				data.name=document.getElementById("can_name").value;
+				data.baud_rate=document.getElementById("can_baudrate").value;
+			//				data.can_len_sendbuff=document.getElementById("can_len_sendbuff").value;
+			}else if(arg=="send"){
+				data.control = 3;
+				data.can_id = document.getElementById("can_id").value;
+				data.name=document.getElementById("can_name").value;
+				data.buf_data=document.getElementById("can_buf_data").value;
+			}else if(arg=="clear")
+			{
+				document.getElementById("can_recv_data").value=" ";
+				return;
+			}else ;
+
+			var str = JSON.stringify(data);
+			ws.send(str);
+        }
+// eth
+         function eth_sendMsg(arg){
+			var data = new Object;
+			data.cmd="eth_cmd";
+			if(arg=="eth0_set_ing"){
+			    data.control = 1;
+			    data.name = "eth0";
+				data.dest_addr=document.getElementById("ip_eth0").value;
+				data.dest_netmask=document.getElementById("netmask_eth0").value;
+				data.dest_gateway=document.getElementById("gateway_eth0").value;
+			}else if(arg=="eth1_set_ing"){
+			    data.control = 1;
+			    data.name = "eth1";
+			    data.dest_addr=document.getElementById("ip_eth1").value;
+			    data.dest_netmask=document.getElementById("netmask_eth1").value;
+			    data.dest_gateway=document.getElementById("gateway_eth1").value;
+			}else if(arg=="eth0_udhcpc_ing"){
+			    data.control = 2;
+			    data.name = "eth0";
+			}else if(arg=="eth1_udhcpc_ing"){
+			    data.control = 2;
+			    data.name = "eth1";
+			}else if(arg=="eth0_test"){    // ping  testing
+			    data.control = 3;
+			    data.name = "eth0";
+				data.ping_addr=document.getElementById("dest_ip0").value;
+			}else if(arg=="eth1_test"){
+			    data.control = 3;
+			    data.name = "eth1";
+			    data.ping_addr=document.getElementById("dest_ip1").value;
+			}else ;
+
+			var str = JSON.stringify(data);
+			ws.send(str);
+        }
+
+		function change_PARAMETER(arg){
+ 			alert(arg);
+			;
+		}
+
+    </script>
+</html>

@@ -5,12 +5,12 @@ load_drivers()
 {
 	while IFS= read -r line; do
 		modprobe $line
-	done < "/etc/modules-load.myd/$1.conf"
+	done < "/etc/modules-load.myir/$1.conf"
 }
 
 do_board()
 {
-	load_drivers "myd" 
+	load_drivers "c" 
 }
 
 dmesg -n 5

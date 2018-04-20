@@ -1,4 +1,5 @@
 #!/bin/sh -e
+cp -a board/myir/common/HMI/*  output/target
 
 if [ -e ${TARGET_DIR}/lib/firmware/pru/PRU_Halt.out ]; then
 	ln -sf /lib/firmware/pru/PRU_Halt.out ${TARGET_DIR}/lib/firmware/am335x-pru0-fw
