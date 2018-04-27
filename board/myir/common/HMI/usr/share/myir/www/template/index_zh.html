@@ -289,7 +289,7 @@
 						<td>
 						测试log：
 						<textarea id="eth0_ping_data" name="" rows="5" cols="100"></textarea>
-						<input class="button on fr" str_op="0" onclick="net_sendMsg($(this).attr('str_op'))" type="button" value="测试"></input>
+						<input class="button on fr"  str_op="net_test" str_num="0"  onclick="net_sendMsg($(this).attr('str_num'))" type="button" value="测试"></input>
 						</td>
 					</tr>
 					</table>
@@ -322,7 +322,7 @@
 						<td>
 						测试log：
 						<textarea id="eth1_ping_data" name="" rows="5" cols="100"></textarea>
-						<input  class="button on fr" str_op="net_test" str_num="1"  onclick="net_sendMsg($(this).attr('str_op'))" type="button" value="测试"></input>
+						<input  class="button on fr" str_op="net_test" str_num="1"  onclick="net_sendMsg($(this).attr('str_num'))" type="button" value="测试"></input>
 						</td>
 					</tr>
 					</table>
@@ -355,7 +355,7 @@
 						<td>
 						测试log：
 						<textarea id="eth2_ping_data" name="" rows="5" cols="100"></textarea>
-						<input  class="button on fr" str_op="net_test" str_num="2"  onclick="net_sendMsg($(this).attr('str_op'))" type="button" value="测试"></input>
+						<input  class="button on fr" str_op="net_test" str_num="2"  onclick="net_sendMsg($(this).attr('str_num'))" type="button" value="测试"></input>
 						</td>
 					</tr>
 					</table>
@@ -388,7 +388,7 @@
 						<td>
 						测试log：
 						<textarea id="eth3_ping_data" name="" rows="5" cols="100"></textarea>
-						<input  class="button on fr" str_op="net_test" str_num="3"  onclick="net_sendMsg($(this).attr('str_op'))" type="button" value="测试"></input>
+						<input  class="button on fr" str_op="net_test" str_num="3"  onclick="net_sendMsg($(this).attr('str_num'))" type="button" value="测试"></input>
 						</td>
 					</tr>
 					</table>
@@ -423,7 +423,9 @@ var portsize = 3;//定义网口数量
 var ledsize = 1;//定义led数量
 var ledsize_static = 1;//
 
- var language="zh";
+var language="zh";
+var web_net;
+var net_show_current=0;
 
 var element_not = {"open_uart_str":"0","close_uart_str":"0","open_can_str":"0","close_can_str":"0","net_set_str":"0","net_dhcp_str":"0","test_str":"0","test111_str":"0"};
 
@@ -441,8 +443,8 @@ var element_not = {"open_uart_str":"0","close_uart_str":"0","open_can_str":"0","
 	       element_not.close_uart_str="close";
 	       element_not.open_can_str="open";
 	       element_not.close_can_str="close";
-		   element_not.net_set_str="set ip";
-		   element_not.net_dhcp_str="dhcpc";
+		   element_not.net_set_str="Set IP";
+		   element_not.net_dhcp_str="DHCP";
 	       element_not.test_str="testing";
 	   }
    }
@@ -470,6 +472,8 @@ var element_not = {"open_uart_str":"0","close_uart_str":"0","open_can_str":"0","
 			for(var i=0;i<obj.list_can_port.length;i++){
 				 add_select_option("can_name",obj.list_can_port[i]);
 			}
+
+			web_net=obj.web_net_using;
 
 		}else if(obj.name_cmd=="rs232_recv_data"){
 			var temp_232=document.getElementById('rs232_recv_data').value;
@@ -594,7 +598,6 @@ var element_not = {"open_uart_str":"0","close_uart_str":"0","open_can_str":"0","
 				data.cmd="uart_cmd";
 				data.name=document.getElementById("rs232_port_name").value;
 				document.getElementById('rs232_button').value = element_not.open_uart_str;
-
 				break;
 			case 'rs485_change': 
 				data.cmd="uart485_cmd";
@@ -612,6 +615,7 @@ var element_not = {"open_uart_str":"0","close_uart_str":"0","open_can_str":"0","
 	}
 	function net_sendMsg(arg){
 		var data = new Object;
+		net_show_current=arg;
 		data.cmd="eth_cmd";
 		data.control = 3;
 		data.name = "eth" + arg;
@@ -686,7 +690,7 @@ var element_not = {"open_uart_str":"0","close_uart_str":"0","open_can_str":"0","
 			$(".nav_item").hide();
 			$(".nav_item:eq("+index+")").show();
 	    });
-		$(".nav span:eq(0)").click();
+		$(".nav span:eq("+net_show_current+")").click();
     }
 
 //uart  232
@@ -852,22 +856,79 @@ $(document).ready(function(){
 //			var led_name_str= document.getElementById("led5").value;
 //			led_set_sendMsg(led_name_str,$(this).attr("str_op"));
 //		}
+
+    function firm() {
+        var info;
+        if (language == "zh") {
+            info = "设置IP后，会重启开发板，是否执行?";
+        }else{
+        	info = "After the IP is set, the development board will be restarted. Is it executed?";
+    	}
+        if (confirm(info)) {
+            return 1;
+        }
+        else {
+            return 0;
+        }
+    }
 		// set ip
 		if($(this).attr("value") == element_not.net_set_str){
 			var data = new Object;
-			data.cmd="eth_cmd";
-			data.control = 1;
-			data.name = "eth" + $(this).attr("str_num");
-			data.dest_addr=document.getElementById("net_ip"+$(this).attr("str_num")).value;
-			data.dest_netmask=document.getElementById("net_netmask"+$(this).attr("str_num")).value;
-			data.dest_gateway=document.getElementById("net_gateway"+$(this).attr("str_num")).value;
+            var ret=0;
+            var ret_va=0,tmp;
+			net_show_current=$(this).attr("str_num");
+			switch (ret_va){
+				case 0:
+				    tmp= document.getElementById("net_ip"+$(this).attr("str_num")).value;
+				    if(tmp == "" || tmp == null || tmp == undefined){
+						ret_va=3;
+					}else{  ret_va=1;
+				    }
+				case 1:
+					tmp= document.getElementById("net_netmask"+$(this).attr("str_num")).value;
+				    if(tmp == "" || tmp == null || tmp == undefined){
+						ret_va=3;
+					}else{  ret_va=2;
+				    }
+				case 2:
+				    tmp= document.getElementById("net_gateway"+$(this).attr("str_num")).value;
+				    if(tmp == "" || tmp == null || tmp == undefined){
+						ret_va=3;
+					}else{  ret_va=4;
+				    }
+				case 3:
+					if(ret_va==4) break;
+				    if(language=="en")
+					{  alert("There are parameters not filled out !");  }
+				    else
+					{  alert(" 有参数没有填写 ！");  }
+				    break;
+			}
+			if(ret_va==3){
+			     return;
+			}
 
-			var str = JSON.stringify(data);
-			ws.send(str);
+			if(web_net== ("eth"+$(this).attr("str_num") ) )
+               ret=firm();
+			else
+			    ret=1;
+
+			if(ret){
+				data.cmd="eth_cmd";
+				data.control = 1;
+				data.name = "eth" + $(this).attr("str_num");
+				data.dest_addr=document.getElementById("net_ip"+$(this).attr("str_num")).value;
+				data.dest_netmask=document.getElementById("net_netmask"+$(this).attr("str_num")).value;
+				data.dest_gateway=document.getElementById("net_gateway"+$(this).attr("str_num")).value;
+				var str = JSON.stringify(data);
+				ws.send(str);
+			}
 		}
+		
 		// udhcpc
 		if($(this).attr("value") == element_not.net_dhcp_str){
 			var data = new Object;
+			net_show_current=$(this).attr("str_num");
 			data.cmd="eth_cmd";
 			data.control = 2;
 			data.name = "eth" + $(this).attr("str_num");

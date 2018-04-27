@@ -3,14 +3,20 @@
 auto lo
 iface lo inet loopback
 
-auto eth0
-iface eth0 inet dhcp
-	pre-up /etc/network/nfs_check
-	wait-delay 15
+#auto eth0
+#iface eth0 inet dhcp
+#	pre-up /etc/network/nfs_check
+#	wait-delay 15
+	
+#iface eth1 inet static
+#	address 192.168.1.88
+#	netmask 255.255.255.0
+#	gateway 192.168.1.1
 
-iface ppp0 inet ppp
+	
+#iface ppp0 inet ppp
 #       provider gprs-dial
 #       provider 3g-dial
 #       provider quectel-dial
-        provider ppp-dial
+#        provider ppp-dial
 

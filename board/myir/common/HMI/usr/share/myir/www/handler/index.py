@@ -52,10 +52,7 @@ class MyGlobal:
         self.fd_can = -1
         self.fd_can_name = "can0"
         self.net_name="net1"
-        # self.dbus_name=" "
-        # self.dbus_path=" "
-        # self.dbus_interface=" "
-
+        self.net_change=0
 
 GL = MyGlobal()
 
@@ -83,7 +80,6 @@ class Parse_command():
     led_dbus_call.add_signal_call()
     status_data = MyClass_json()
     status_data.name_cmd = "status_data"
-
 
     def baudrate_get(self,tmp1):
         tmp=str(tmp1)
@@ -369,21 +365,42 @@ class Parse_command():
             dbus_call_t.led_set(led_name,led_value_set)
     def eth_handler(self,python_object):
         eth_op=class_eth()
-
+        eth_op.init_connmanclient()
         eth_name = python_object["name"]
         eth_control=python_object["control"]
         if eth_control==1:   # 设置IP  connman的库有bug，使用
             ip_eth = python_object["dest_addr"]
             ip_netmask = python_object["dest_netmask"]
             ip_gateway = python_object["dest_gateway"]
-            str_config = "ifconfig " + eth_name + " "+ip_eth
-            os.system(str_config)
-            # read and sent to html
-            eth_op._eth_handler_to_sent()
 
+            # str_config = "ifconfig " + eth_name + " "+ip_eth
+            # os.system(str_config)
+
+            # if ip_netmask==" ":
+            #     print "IP parameter is incomplete"
+            #     return
+            # if str(ip_gateway) == " ":
+            #     print "IP parameter is incomplete"
+            #     return
+            # if ip_eth == " ":
+            #     print "IP parameter is incomplete"
+            #     return
+            # if eth_name == " ":
+            #     print "IP parameter is incomplete"
+            #     return
+
+            eth_op.myConn.set_ipv4(ip_netmask,ip_gateway,"manual",ip_eth,eth_name)
+
+            if(str(eth_name)==str(GL.net_name)):
+                time.sleep(1)
+                os.system(" reboot ")
+            # read and sent to html
+            # eth_op._eth_handler_to_sent()
         elif eth_control==2:   ## 自动获取ip  
-            str_config = "udhcpc -i " + eth_name
-            os.system(str_config)
+            # str_config = "udhcpc -i " + eth_name
+            # os.system(str_config)
+            eth_op.myConn.set_ipv4_dhcp("dhcp",eth_name)
+            time.sleep(1)
             eth_op._eth_handler_to_sent()
         elif eth_control==3:   ##  ping 测试
             ping_ip=python_object["ping_addr"]
@@ -401,6 +418,7 @@ class Parse_command():
                 
     def update_eth_info(self):
         eth_op = class_eth()
+        eth_op.init_connmanclient()
         # eth_op._eth_handler_to_sent()
         # sleep(0.5)
         eth_op._eth_handler_to_sent()
@@ -435,7 +453,6 @@ def read_configure():
         rs485_port="/dev/"+f_read["board_info"]['rs485'][0]
         can_port=f_read["board_info"]['can'][0]
         # can_port1=f_read["board_info"]['can'][1]
-        print "hun--"
         # eth0_port=f_read['board_info']['eth0_port']
 
         # GL.dbus_name=f_read["dbus_info"][0]
@@ -520,11 +537,13 @@ class WebSocketHandler_myir(tornado.websocket.WebSocketHandler):
         # print ("websocket opened")
         WebSocketHandler_myir.socket_handlers.add(self)
         eth_operate = class_eth()
+        eth_operate.init_connmanclient()
         ## init
         # rs232_port, rs485_port, can_port=read_configure()
         configure_data = MyClass_json()
         configure_data.name_cmd="configure_cmd"
         configure_data.list_232_port,configure_data.list_485_port,configure_data.list_can_port = read_configure_tt()
+        configure_data.web_net_using=str(GL.net_name)
         # configure_data.eth0_port=eth0_port
         configure_data_json = configure_data.__dict__
         json_data = json.dumps(configure_data_json)
@@ -553,6 +572,10 @@ class WebSocketHandler_myir(tornado.websocket.WebSocketHandler):
 class class_eth():
 
     def __init__(self):
+        # self.myConn = ConnmanClient(90)
+        pass
+
+    def init_connmanclient(self):
         self.myConn = ConnmanClient(90)
 
     def _eth_handler_to_sent(self):

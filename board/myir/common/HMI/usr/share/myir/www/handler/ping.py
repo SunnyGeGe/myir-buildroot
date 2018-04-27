@@ -169,8 +169,6 @@ def judge_legal_ip2(one_str):
         return flag  
 
 
-
-
 if __name__ == '__main__':
   print verbose_ping_2("192.168.30.2",2)
   # verbose_ping_2("192.168.30.2",2)

@@ -16,7 +16,6 @@ from tornado.options import define,options
 from tornado.websocket import WebSocketHandler
 from application import application
 from time import ctime,sleep
-
 from handler.index import GL
 
 # from traceback import print_exc
@@ -29,35 +28,39 @@ from handler.dbus_mess import mainloop_class
 from handler.index import get_ip_address
 from handler.index import class_eth
 
-# class MyGlobal_NET:
-#     def __init__(self):
-#         self.net_name = "eth"
-# GL_NET = MyGlobal_NET()
-
 define("port",default=8090,help="run on th given port",type=int)
 
+eth_op = class_eth()
+eth_op.init_connmanclient()
+
 def loop_fun():
-    n=0
     dbus_call_t = mainloop_class()
     dbus_call_t.mainloop_run()
-
     while True:
-        n = n + 1
-        if n>1000:
-            n=0
         time.sleep(1)
     print('thread dbus recv evet %s ended.' % threading.current_thread().name)
 
+def loop_signal():
+    while True:
+        if GL.net_change==1:
+            eth_op._eth_handler_to_sent()
+            GL.net_change=0
+        time.sleep(1)
+    print('thread net %s ended.' % threading.current_thread().name)
+
 def main():
+
     t_thread = threading.Thread(target=loop_fun, name='LoopThread_dbus_signal')
     t_thread.setDaemon(True)
     t_thread.start()
-
+    t_thread1 = threading.Thread(target=loop_signal, name='net_signal')
+    t_thread1.setDaemon(True)
+    t_thread1.start()
     tornado.options.parse_command_line()
     http_server = tornado.httpserver.HTTPServer(application)
     http_server.listen(options.port)
     ip_addr="none"
-    eth_op = class_eth()
+
     eth_server_cnt=0
     while (eth_server_cnt<=0):
         eth_server_cnt, eth_list_server = eth_op._read_eth()

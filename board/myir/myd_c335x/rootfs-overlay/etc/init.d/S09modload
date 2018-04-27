@@ -10,7 +10,7 @@ load_drivers()
 
 do_board()
 {
-	load_drivers "c" 
+	load_drivers "am335x" 
 }
 
 dmesg -n 5

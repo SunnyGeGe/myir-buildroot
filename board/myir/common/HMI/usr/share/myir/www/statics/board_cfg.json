@@ -7,8 +7,7 @@
                         "ttymxc3"
                 ],
                 "can": [
-                        "can0",
-                        "can1"
+                        "can0"
                 ],
                 "led": {
                         "myc:blue":"cpu0 - D30  - Core Board"
@@ -22,13 +21,13 @@
                         "board": "MYD-Y6ULX",
                         "CPU": "i.MX6ULL",
                         "memory": "256MB",
-                        "storage": "256M"
+                        "storage": "256MB"
                 }
         },
 
         "dbus_info": {
                 "dbus_name": "com.myirtech.mxde",
-                "dbu_path": "/com/myirtech/mxde",
+                "dbus_path": "/com/myirtech/mxde",
                 "dbus_interface": "com.myirtech.mxde.MxdeInterface"
         }
 }

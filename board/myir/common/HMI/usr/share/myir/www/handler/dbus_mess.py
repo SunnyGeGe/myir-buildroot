@@ -58,9 +58,9 @@ class mainloop_class():
 
 ## dbus base
 class BaseMessage_DBus():
-
+    connect_statu=1
     dbus_name="com.myirtech.mxde"
-    dbu_path="/com/myirtech/mxde"
+    dbus_path= "/com/myirtech/mxde"
     dbus_interface="com.myirtech.mxde.MxdeInterface"
 
     path_file='/usr/share/myir/board_cfg.json'
@@ -71,16 +71,15 @@ class BaseMessage_DBus():
         print("Did not find the configuration file '/usr/share/myir/board_cfg.json' ")
     finally:
         pass
+
     try:
-        dbus_name=f_read["dbus_info"][0]
-        dbus_path=f_read["dbus_info"][1]
-        dbus_interface=f_read["dbus_info"][2]
+        dbus_name=f_read["dbus_info"]["dbus_name"]
+        dbus_path=f_read["dbus_info"]["dbus_path"]
+        dbus_interface=f_read["dbus_info"]["dbus_interface"]
     except:
-        print ("read dbus configure error")
+         print ("read dbus configure error")
+
     bus=dbus.SessionBus()
-    # dbus_name="com.myirtech.mxde"
-    # dbu_path="/com/myirtech/mxde"
-    # dbus_interface="com.myirtech.mxde.MxdeInterface"
     iface = dbus.Interface("test",dbus_interface)
     # def __init__(self):
     #     pass
@@ -89,18 +88,24 @@ class BaseMessage_DBus():
     # def connect_dbus(self):
     try:
         print("try dbus connect !!!")
-        remote_object = bus.get_object(dbus_name, dbu_path)
+        remote_object = bus.get_object(dbus_name, dbus_path)
         iface = dbus.Interface(remote_object, dbus_interface)
     except dbus.DBusException:
         # traceback.print_exc()
         print("dbus get object error !")
-    print("dbus connect succless !")
+        connect_statu=0
+
+    if connect_statu==1:
+        print("dbus connect succless !")
+    else:
+        print("dbus connect faild !")
+
     # mainloop = GLib.MainLoop()
 
     def __init__(self):
         try:
             print("try dbus connect 2!")
-            remote_object = self.bus.get_object(self.dbus_name, self.dbu_path)
+            remote_object = self.bus.get_object(self.dbus_name, self.dbus_path)
             self.iface = dbus.Interface(remote_object, self.dbus_interface)
 
         except dbus.DBusException:
@@ -166,9 +171,9 @@ class dbus_led(BaseMessage_DBus):
 
     def add_signal_call(self):
         # pass
-        BaseMessage_DBus.bus.add_signal_receiver(self.led_recv_data,dbus_interface=BaseMessage_DBus.dbus_interface, \
-                                     bus_name=BaseMessage_DBus.dbus_name,path=BaseMessage_DBus.dbu_path, \
-                                     signal_name="sigLedBrightnessChanged")
+        BaseMessage_DBus.bus.add_signal_receiver(self.led_recv_data, dbus_interface=BaseMessage_DBus.dbus_interface, \
+                                                 bus_name=BaseMessage_DBus.dbus_name, path=BaseMessage_DBus.dbus_path, \
+                                                 signal_name="sigLedBrightnessChanged")
 
     def _message_led(self,temp_str,list_va):
         from handler.index import WebSocketHandler_myir
@@ -202,9 +207,9 @@ class dbus_uart(BaseMessage_DBus):
 
     def add_signal_call(self):
         # pass
-        BaseMessage_DBus.bus.add_signal_receiver(self.serial_recv_data,dbus_interface=BaseMessage_DBus.dbus_interface, \
-                                     bus_name=BaseMessage_DBus.dbus_name,path=BaseMessage_DBus.dbu_path, \
-                                     signal_name="sigSerialRecv")
+        BaseMessage_DBus.bus.add_signal_receiver(self.serial_recv_data, dbus_interface=BaseMessage_DBus.dbus_interface, \
+                                                 bus_name=BaseMessage_DBus.dbus_name, path=BaseMessage_DBus.dbus_path, \
+                                                 signal_name="sigSerialRecv")
 
     def serial_recv_data(self, fd, data, len):
             from handler.index import WebSocketHandler_myir
@@ -284,9 +289,9 @@ class dbus_can(BaseMessage_DBus):
         pass
     def add_signal_call(self):
         # pass
-        BaseMessage_DBus.bus.add_signal_receiver(self.can_recv_data,dbus_interface=BaseMessage_DBus.dbus_interface, \
-                                     bus_name=BaseMessage_DBus.dbus_name,path=BaseMessage_DBus.dbu_path, \
-                                     signal_name="sigCanRecv")
+        BaseMessage_DBus.bus.add_signal_receiver(self.can_recv_data, dbus_interface=BaseMessage_DBus.dbus_interface, \
+                                                 bus_name=BaseMessage_DBus.dbus_name, path=BaseMessage_DBus.dbus_path, \
+                                                 signal_name="sigCanRecv")
 
     def can_recv_data(self, fd, can_id, len,can_data):
         from handler.index import WebSocketHandler_myir
