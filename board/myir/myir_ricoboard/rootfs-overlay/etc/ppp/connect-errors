@@ -1,0 +1,128 @@
+sh: line 1: ATDT*99***1# CONNECT: command not found
+abort on (BUSY)
+abort on (NO CARRIER)
+abort on (NO DIALTONE)
+abort on (ERROR)
+abort on (NO ANSWER)
+timeout set to 30 seconds
+send (AT^M)
+expect (OK)
+AT^M^M
+OK
+ -- got it
+
+send (ATE0^M)
+expect (OK)
+^M
+ATE0^M^M
+OK
+ -- got it
+
+send (ATI;+CSUB;+CSQ;+CPIN?;+COPS?;+CGREG?;&D2^M)
+expect (OK)
+^M
+^M
+Quectel^M
+EC20^M
+Revision: EC20CQDR02A04E2G^M
+^M
+SubEdition: V02^M
+^M
++CSQ: 31,99^M
+^M
++CPIN: READY^M
+^M
++COPS: 0,0,"CHINA  MOBILE CMCC",7^M
+^M
++CGREG: 0,1^M
+^M
+OK
+ -- got it
+
+send (AT+CGDCONT=1,"IP","3gnet",,0,0^M)
+expect (OK)
+^M
+^M
+OK
+ -- got it
+
+send (ATDT*99#^M)
+expect (CONNECT)
+^M
+^M
+CONNECT
+ -- got it
+
+abort on (ERROR)
+abort on (NO DIALTONE)
+
+Sending break to the modem
+send (+++^M)
+send (+++^M)
+send (+++^M)
+
+Goodbay
+abort on (BUSY)
+abort on (NO CARRIER)
+abort on (NO DIALTONE)
+abort on (ERROR)
+abort on (NO ANSWER)
+timeout set to 30 seconds
+send (AT^M)
+expect (OK)
+^M
+OK
+ -- got it
+
+send (ATE0^M)
+expect (OK)
+^M
+^M
+OK
+ -- got it
+
+send (ATI;+CSUB;+CSQ;+CPIN?;+COPS?;+CGREG?;&D2^M)
+expect (OK)
+^M
+^M
+Quectel^M
+EC20^M
+Revision: EC20CQDR02A04E2G^M
+^M
+SubEdition: V02^M
+^M
++CSQ: 31,99^M
+^M
++CPIN: READY^M
+^M
++COPS: 0,0,"CHINA  MOBILE CMCC",7^M
+^M
++CGREG: 0,1^M
+^M
+OK
+ -- got it
+
+send (AT+CGDCONT=1,"IP","3gnet",,0,0^M)
+expect (OK)
+^M
+^M
+OK
+ -- got it
+
+send (ATDT*99#^M)
+expect (CONNECT)
+^M
+^M
+CONNECT
+ -- got it
+
+abort on (ERROR)
+abort on (NO DIALTONE)
+
+Sending break to the modem
+send (+++^M)
+send (+++^M)
+send (+++^M)
+
+Goodbay
+

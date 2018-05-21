@@ -1,0 +1,29 @@
+#!/bin/sh
+#
+
+load_drivers()
+{
+	while IFS= read -r line; do
+		modprobe $line
+	done < "/etc/modules-load.myir_ricoboard/$1.conf"
+}
+
+do_board()
+{
+	load_drivers "ricoboard" 
+}
+
+dmesg -n 5
+
+case "$1" in
+	start)
+		do_board
+		;;
+	stop)
+		;;
+	restart|reload)
+		;;
+	*)
+		echo "Usage: $0 {start|stop|restart}"
+		exit 1
+esac
