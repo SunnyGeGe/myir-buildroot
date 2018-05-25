@@ -250,7 +250,7 @@ emmc_partition()
 #200,,0x0c,-
 #EOF
 	{
-	echo ,395352,0x0C,*
+	echo ,2092920,0x0C,*
 	echo ,2092920,,-
 	echo ,,,-
 	} | sfdisk -u S $EMMC_DRIVE >/dev/null 2>&1

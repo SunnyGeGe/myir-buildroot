@@ -106,12 +106,12 @@ How to use it
   - Insert the TF/SD card to slot, and set bootmode to mmc0
   - PowerOff and PowerOn to boot from TF/SD card, press 'space' to interrupt u-boot and enter the u-boot console
   - Execute 'run updatesys' in u-boot console to write MLO, u-boot.img, zImage, myd_y335x.dtb, rootfs.ubi to nand
-  - User can also update image from linux with the script "/etc/modules-load.myd/updatesys.sh loader2nand sd"
+  - User can also update image from linux with the script "/etc/modules-load.myir/updatesys.sh loader2nand sd"
   - Set bootmode to nand and poweron
 
 6. Boot from EMMC
   - Boot from TF/SD and login into linux 
-  - Run "/etc/modules-load.myd/updatesys.sh loader2emmc sd" to write the image files from TF/SD to emmc
+  - Run "/etc/modules-load.myir/updatesys.sh loader2emmc sd" to write the image files from TF/SD to emmc
   - Change the boot mode to emmc and repower up.
 
 Auto Update System

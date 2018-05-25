@@ -40,8 +40,8 @@ elif [ "$1" == "loader2nand" ]; then
 fi
 
 FILE_ZIMAGE="zImage"
-FILE_DEVICETREE="myd_c335x.dtb"
-FILE_DEVICETREE_EMMC="myd_c335x_emmc.dtb"
+FILE_DEVICETREE="myd_y335x.dtb"
+FILE_DEVICETREE_EMMC="myd_y335x_emmc.dtb"
 FILE_FILESYSTEM="rootfs.tar.gz"
 FILE_FILESYSTEM_NAND="rootfs.ubi"
 FILE_RAMDISK="ramdisk.gz"

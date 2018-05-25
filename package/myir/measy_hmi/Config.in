@@ -1,0 +1,4 @@
+config BR2_PACKAGE_MEASY_HMI
+	bool "measy_hmi"
+	help
+	  measy-hmi is intended to be used on embedded boards of myirtech.

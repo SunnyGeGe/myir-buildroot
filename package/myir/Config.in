@@ -40,6 +40,7 @@ config BR2_PACKAGE_MYIR_PLATFORM
 source "package/myir/pcba_test/Config.in"
 source "package/myir/ltp-ddt/Config.in"
 source "package/myir/serialcheck/Config.in"
+source "package/myir/measy_hmi/Config.in"
 
 endif
 
