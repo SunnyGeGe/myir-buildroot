@@ -1,0 +1,34 @@
+#! /bin/sh
+if grep "updatesys_from_usbmsc_to_emmc" /proc/cmdline > /dev/null;then
+	echo
+	echo "***********************************************"
+	echo "*** SYSTEM UPDATE FROM USBMSC TO EMMC *********"
+	echo "***********************************************"
+	echo
+	yes | /etc/modules-load.myir/updatesys.sh loader2emmc usbmsc
+fi
+if grep "updatesys_from_sd_to_emmc" /proc/cmdline > /dev/null;then
+	echo
+	echo "***********************************************"
+	echo "*** SYSTEM UPDATE FROM SDCARD TO EMMC *********"
+	echo "***********************************************"
+	echo
+	yes | /etc/modules-load.myir/updatesys.sh loader2emmc sd
+fi
+#! /bin/sh
+if grep "updatesys_from_usbmsc_to_nand" /proc/cmdline > /dev/null;then
+	echo
+	echo "***********************************************"
+	echo "*** SYSTEM UPDATE FROM USBMSC TO NAND *********"
+	echo "***********************************************"
+	echo
+	yes | /etc/modules-load.myir/updatesys.sh loader2nand usbmsc
+fi
+if grep "updatesys_from_sd_to_nand" /proc/cmdline > /dev/null;then
+	echo
+	echo "***********************************************"
+	echo "*** SYSTEM UPDATE FROM SDCARD TO NAND *********"
+	echo "***********************************************"
+	echo
+	yes | /etc/modules-load.myir/updatesys.sh loader2nand sd
+fi

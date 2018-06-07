@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=MYIR Support
+Name[zh_TW]=米尔支持
+Name[zh_CN]=米尔支持
+
+Type=Application
+Icon=/usr/share/pixmaps/hello192.png
+Exec=/home/myir/mxsupport --platform linuxfb
+Terminal=false
+MimeType=application/x-directory;inode/directory;
+Categories=System;FileTools;Utility;Qt;FileManager;

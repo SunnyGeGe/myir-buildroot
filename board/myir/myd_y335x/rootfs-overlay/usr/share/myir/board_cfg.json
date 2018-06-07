@@ -1,0 +1,35 @@
+{
+	"board_info": {
+		"rs232": [
+			"ttyO1"
+		],
+		"rs485": [
+			"ttyO2"
+		],
+		"can": [
+			"can0",
+			"can1"
+		],
+		"led": {
+			"myc:green:user1": "D3->Core Board",
+			"myd:green:user2": "D2->Base Board"
+		},
+		"system": {
+			"HMI_version": "MEasy HMI V1.0",
+			"linux_version": "linux-4.1.18",
+			"uboot_version": "u-boot-2016.05",
+			"gcc_version": "arm-linux-gcc 5.4.0",
+			"manufacturer": "MYIR Tech Limited",
+			"board": "MYD-Y335X",
+			"CPU": "TI AM335X",
+			"memory": "256MB",
+			"storage": "256MB NAND"
+		}
+	},
+
+	"dbus_info": {
+		"dbus_name": "com.myirtech.mxde",
+		"dbus_path": "/com/myirtech/mxde",
+		"dbus_interface": "com.myirtech.mxde.MxdeInterface"
+	}
+}

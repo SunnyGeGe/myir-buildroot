@@ -1,0 +1,23 @@
+
+# Python:
+*.py[cod]
+*.egg
+*.egg-info
+
+# ide:
+*.idea
+
+# ---
+
+*.o
+*.o.*
+*.s
+
+*.bin
+*.tar
+*.gz
+*.bz2
+*.lzma
+*.xz
+*.lz4
+*.lzo

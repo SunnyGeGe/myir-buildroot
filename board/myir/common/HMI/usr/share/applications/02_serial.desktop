@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=Serial Port
+Name[zh_TW]=串口
+Name[zh_CN]=串口
+
+Type=Application
+Icon=/usr/share/pixmaps/serial192.png
+Exec=/home/myir/mxserial --platform linuxfb
+Terminal=false
+MimeType=application/x-directory;inode/directory;
+Categories=System;FileTools;Utility;Qt;FileManager;

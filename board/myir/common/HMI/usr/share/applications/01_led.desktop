@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=LED
+Name[zh_TW]=指示灯
+Name[zh_CN]=发光二极管
+
+Type=Application
+Icon=/usr/share/pixmaps/led192.png
+Exec=/home/myir/mxled --platform linuxfb
+Terminal=false
+MimeType=application/x-directory;inode/directory;
+Categories=System;FileTools;Utility;Qt;FileManager;

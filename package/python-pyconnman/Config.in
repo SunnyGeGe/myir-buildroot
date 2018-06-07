@@ -1,0 +1,8 @@
+config BR2_PACKAGE_PYTHON_PYCONNMAN
+	bool "python-pyconnman"
+	select BR2_PACKAGE_DBUS_PYTHON
+	select BR2_PACKAGE_PYTHON_GOBJECT
+	help
+	  A library for managing network connectivity using Python, ConnMan and DBus.
+
+	  https://github.com/liamw9534/pyconnman

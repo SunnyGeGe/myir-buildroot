@@ -1,0 +1,33 @@
+{
+        "board_info": {
+                "rs232": [
+                        "ttymxc1"
+                ],
+                "rs485": [
+                        "ttymxc3"
+                ],
+                "can": [
+                        "can0"
+                ],
+                "led": {
+                        "myc:blue":"cpu0 - D30  - Core Board"
+                },
+                "system": {
+                        "HMI_version": "MEasy HMI V1.0",
+                        "linux_version": "linux-4.1.15",
+                        "uboot_version": "u-boot-2016.03",
+                        "gcc_version": "arm-linux-gcc 5.3.0",
+                        "manufacturer": "MYIR Tech Limited",
+                        "board": "MYD-Y6ULX",
+                        "CPU": "i.MX6ULL",
+                        "memory": "256MB",
+                        "storage": "256MB"
+                }
+        },
+
+        "dbus_info": {
+                "dbus_name": "com.myirtech.mxde",
+                "dbus_path": "/com/myirtech/mxde",
+                "dbus_interface": "com.myirtech.mxde.MxdeInterface"
+        }
+}

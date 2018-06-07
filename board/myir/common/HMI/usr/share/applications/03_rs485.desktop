@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=RS485
+Name[zh_TW]=RS485
+Name[zh_CN]=RS485
+
+Type=Application
+Icon=/usr/share/pixmaps/rs485192.png
+Exec=/home/myir/mxrs485 --platform linuxfb
+Terminal=false
+MimeType=application/x-directory;inode/directory;
+Categories=System;FileTools;Utility;Qt;FileManager;

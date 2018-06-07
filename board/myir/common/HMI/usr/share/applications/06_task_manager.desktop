@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=Task Manager
+Name[zh_TW]=任务管理器
+Name[zh_CN]=任务管理器
+
+Type=Application
+Icon=/usr/share/pixmaps/taskmgr192.png
+Exec=/home/myir/mxtaskmanager --platform linuxfb
+Terminal=false
+MimeType=application/x-directory;inode/directory;
+Categories=System;FileTools;Utility;Qt;FileManager;

@@ -1,0 +1,977 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>MYIR TECH</title>
+	<meta name="description" content="米尔科技" />
+	<meta name="keywords" content="米尔科技" />
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="generator" content="myir tech"/>
+	<link href="favicon.ico" rel="shortcut icon" />
+	<link rel="stylesheet" type="text/css" href="statics/css/style_en.css" />
+</head>
+<body>
+	<header>
+		<img src="statics/images_en/logo.png">
+		<img class="language" src="statics/images_en/cn.png">
+	</header>
+	<div id="main">
+		<div id="left">
+			<span class="menus menu1">&nbsp;</span>
+			<span class="menus menu2">&nbsp;</span>
+			<span class="menus menu3">&nbsp;</span>
+			<span class="menus menu4">&nbsp;</span>
+			<span class="menus menu5" id="eth_update">&nbsp;</span>
+			<span class="menus menu6">&nbsp;</span>
+		</div>
+		<div id="right">
+			<section class="tab" id="led">
+				<h2>Test LED</h2>
+				<div class="one_item">
+					<input class="text" id="led1" value="cpu" type="text" readonly />
+					<input class="button menu" str_op="led_open" str_num="1" type="button" value="LED_ON"></input>
+					<input class="button second menu" str_op="led_close" str_num="1" type="button" value="LED_OFF"></input>
+					<img class="led" id="img1" src="statics/images_en/led_red.png" />
+				</div>
+				<div class="one_item" style="display:none">
+					<input class="text" id="led2" value="cpu" type="text" readonly />
+					<input class="button menu" str_op="led_open" str_num="2" type="button" value="LED_ON"></input>
+					<input class="button second menu" type="button"  str_op="led_close" str_num="2" value="LED_OFF"></input>
+					<img class="led" id="img2" src="statics/images_en/led_red.png" />
+				</div>
+				<div class="one_item" style="display:none">
+					<input class="text" id="led3" value="cpu" type="text" readonly />
+					<input class="button menu" str_op="led_open" str_num="3" type="button" value="LED_ON"></input>
+					<input class="button second menu" type="button"  str_op="led_close" str_num="3" value="LED_OFF"></input>
+					<img class="led" id="img3" src="statics/images_en/led_red.png" />
+				</div>
+				<div class="one_item" style="display:none">
+					<input class="text" id="led4" value="cpu" type="text" readonly />
+					<input class="button menu" str_op="led_open" str_num="4" type="button" value="LED_ON"></input>
+					<input class="button second menu" type="button"  str_op="led_close" str_num="4" value="LED_OFF"></input>
+					<img class="led" id="img4" src="statics/images_en/led_red.png" />
+				</div>
+				<div class="one_item" style="display:none">
+					<input class="text" id="led5" value="cpu" type="text" readonly />
+					<input class="button menu" str_op="led_open" str_num="5" type="button" value="LED_ON"></input>
+					<input class="button second menu" type="button"  str_op="led_close" str_num="5" value="LED_OFF"></input>
+					<img class="led" id="img5" src="statics/images_en/led_red.png" />
+				</div>
+				<div class="one_item" style="display:none">
+					<input class="text" id="led6" value="cpu" type="text" readonly />
+					<input class="button menu" str_op="led_open" str_num="6" type="button" value="LED_ON"></input>
+					<input class="button second menu" type="button"  str_op="led_close" str_num="6" value="LED_OFF"></input>
+					<img class="led" id="img6" src="statics/images_en/led_red.png" />
+				</div>
+
+			</section>
+			<section class="tab">
+				<h2>Test RS232</h2>
+				<table>
+				<tr>
+					<td>					
+					Port
+					<select id="rs232_port_name" name="name" str_op="rs232_change" onchange="change_parameter($(this).attr('str_op'));">
+						<!--<option id="RS232_NAME" value="/dev/ttymxc8" selected>/dev/ttymxc8-->
+					</select>
+					&nbsp;Baud rate
+					<select id="rs232_baud_rate" name="name" str_op="rs232_change" onchange="change_parameter($(this).attr('str_op'));">
+						<option value="300" selected>300
+						<option value="600">600
+						<option value="1200">1200
+						<option value="2400">2400
+						<option value="4800">4800
+						<option value="9600">9600
+						<option value="19200">19200
+						<option value="38400">38400
+						<option value="57600">57600
+						<option value="115200">115200
+					</select>
+					&nbsp;Data bits
+					<select id="rs232_databit" name="name" str_op="rs232_change" onchange="change_parameter($(this).attr('str_op'));">
+						<option value="8" selected>8
+						<option value="7">7
+						<option value="6">6
+					</select>
+					&nbsp;Check
+					<select id="rs232_checkbit" name="name" str_op="rs232_change" onchange="change_parameter($(this).attr('str_op'));">
+						<option value="NONE" selected>NONE
+						<option value="E">E
+						<option value="O">O
+					</select>
+					&nbsp;Stop bit
+					<select  id="rs232_stopbit" name="name" str_op="rs232_change" onchange="change_parameter($(this).attr('str_op'));">
+						<option value="1" selected>1
+						<option value="2">2
+					</select>
+					</td>
+				</tr>
+				<tr>
+					<td>
+					<input class="button mright50 menu" id="rs232_button"  str_op="operate"  onclick="uart_sendMsg($(this).attr('str_op'),value)" type="button" value="open"></input>
+					</td>
+				</tr>
+				<tr>
+					<td>
+					Send：
+					<textarea id="rs232_buf_data" name="" rows="5" cols="100"></textarea>
+					<input class="button mright50 menu" str_op="send" onclick="uart_sendMsg($(this).attr('str_op'),value)" type="button" value="send"></input>
+					</td>
+				</tr>
+				<tr>
+					<td>
+					Recv：
+					<textarea id="rs232_recv_data" name="" rows="5" cols="100"></textarea>
+					<input class="button orange fr"  str_op="clear" onclick="uart_sendMsg($(this).attr('str_op'),value)" type="button" value="clear"></input>
+					</td>
+				</tr>
+				</table>
+			</section>
+			<section class="tab">
+				<h2>Test RS485</h2>
+				<table>
+				<tr>
+					<td>					
+					Port
+				    <select id="rs485_port_name" name="name">
+						<!--<option value="/dev/ttymxc1" selected>/dev/ttymxc1-->
+						<!--<option value="/dev/ttymxc3">/dev/ttymxc3-->
+					</select>
+					Baud rate
+					<select id="rs485_baud_rate" name="name" str_op="rs485_change" onchange="change_parameter($(this).attr('str_op'));">
+						<option value="300" selected>300
+						<option value="600">600
+						<option value="1200">1200
+						<option value="2400">2400
+						<option value="4800">4800
+						<option value="9600">9600
+						<option value="19200">19200
+						<option value="38400">38400
+						<option value="57600">57600
+						<option value="115200">115200
+					</select>
+					Data bits
+					<select id="rs485_databit" name="name" str_op="rs485_change" onchange="change_parameter($(this).attr('str_op'));">
+						<option value="8" selected>8
+						<option value="7">7
+						<option value="6">6
+					</select>
+					Check
+					<select id="rs485_checkbit" name="name" str_op="rs485_change" onchange="change_parameter($(this).attr('str_op'));">
+						<option value="NONE" selected>NONE
+						<option value="E">E
+						<option value="O">O
+					</select>
+					Stop bit
+					<select  id="rs485_stopbit" name="name" str_op="rs485_change" onchange="change_parameter($(this).attr('str_op'));">
+						<option value="1" selected>1
+						<option value="2">2
+					</select>
+					</td>
+				</tr>
+				<tr>
+					<td>
+					<input class="button mright50 menu" id="rs485_button" str_op="operate"  onclick="uart485_sendMsg($(this).attr('str_op'),value)" type="button" value="open"></input>
+					</td>
+				</tr>
+				<tr>
+					<td>
+					Send：
+					<textarea id="rs485_buf_data" name="" rows="5" cols="100"></textarea>
+					<input class="button mright50 menu" str_op="send"  onclick="uart485_sendMsg($(this).attr('str_op'),value)" type="button" value="send"></input>
+					</td>
+				</tr>
+				<tr>
+					<td>
+					Recv：
+					<textarea id="rs485_recv_data" name="" rows="5" cols="100"></textarea>
+					<input class="button orange fr" str_op="clear" onclick="uart485_sendMsg($(this).attr('str_op'),value)" type="button" value="clear"></input>
+					</td>
+				</tr>
+				</table>
+			</section>
+			<section class="tab">
+				<h2>Test CAN</h2>
+				<table>
+				<tr>
+					<td>					
+					Port
+					<!--<select id="can_name" name="name" str_op="can_change" onchange="change_parameter($(this).attr('str_op'));">-->
+						<!--<option value="can0" selected>can0-->
+						<!--<option value="can1">can1-->
+					<!--</select>-->
+
+					<select id="can_name" name="name" str_op="can_change" onchange="change_parameter($(this).attr('str_op'));">
+						<!--<option value="/dev/ttymxc1" selected>/dev/ttymxc1-->
+						<!--<option value="/dev/ttymxc3">/dev/ttymxc3-->
+					</select>
+
+					Baud rate
+					<select id="can_baudrate" name="name" str_op="can_change" onchange="change_parameter($(this).attr('str_op'));">
+						<option value="20" selected>20 KBPS
+						<option value="50">50 KBPS
+						<option value="125">125 KBPS
+						<option value="250">250 KBPS
+						<option value="500">500 KBPS
+						<option value="800">800 KBPS
+						<option value="1000">1000 KBPS
+					</select>
+					Loop
+					<select id="can_loop" name="name" str_op="can_change" onchange="change_parameter($(this).attr('str_op'));">
+						<option value="OFF" selected>OFF
+						<option value="ON">ON
+					</select>
+					</td>
+				</tr>
+				<tr>
+					<td>
+					<input class="button mright50 menu" id="can_button" str_op="operate"  onclick="can_sendMsg($(this).attr('str_op'),value)" type="button" value="open"></input>
+
+					</td>
+				</tr>
+				<tr>
+					<td>
+					Can ID：
+					<input id="can_id" type="text"  value="100"  style="width:8%;height:15px">
+					</td>
+				</tr>
+				<tr>
+					<td>
+					Send：
+					<textarea id="can_buf_data" name="" rows="5" cols="100"></textarea>
+					<input class="button mright50 menu" str_op="send"  onclick="can_sendMsg($(this).attr('str_op'))" type="button" value="send"></input>
+					</td>
+				</tr>
+				<tr>
+					<td>
+					Recv：
+					<textarea id="can_recv_data" name="" rows="5" cols="100"></textarea>
+					<input class="button orange fr" str_op="clear"  onclick="can_sendMsg($(this).attr('str_op'))" type="button" value="clear"></input>
+					</td>
+				</tr>
+				</table>
+			</section>
+			<section class="tab" id="ethernet" >
+				<h2>EtherNet</h2>
+				<div id="netcalss" class="nav">
+					<span id="eth0" data="0">Eth1</span>
+					<span id="eth1" data="1">Eth2</span>
+					<span id="eth2" data="2">Eth3</span>
+					<span id="eth3" data="3">Eth4</span>
+					</div>
+				<div class="nav_item">
+					<table>
+					<tr>
+						<td>					
+						IP 1
+						<input type="text" id="net_ip0"  name="name"></input>
+						Netmask
+						<input type="text" id="net_netmask0"  name="name"></input>
+						Gateway
+						<input type="text" id="net_gateway0"  name="name"></input>
+						</td>
+					</tr>
+					<tr>
+						<td>
+						<input  class="button mright50 menu" str_op="eth0_set" str_num="0"   type="button" value="Set IP"></input>
+						<input  class="button mright50 menu" str_op="eth0_udhcpc" str_num="0"   type="button" value="DHCP"></input>
+						</td>
+					</tr>
+					<tr>
+						<td>
+						URL：
+						<input id="dest_ip0" class="site" type="text" name="name" ></input>
+						</td>
+					</tr>
+					<tr>
+						<td>
+						log：
+						<textarea id="eth0_ping_data" name="" rows="5" cols="100"></textarea>
+						<input class="button on fr" str_op="net_test" str_num="0" onclick="net_sendMsg($(this).attr('str_num'))" type="button" value="Test"></input>
+						</td>
+					</tr>
+					</table>
+				</div>
+				<div class="nav_item" style="display:none;">
+					<table>
+					<tr>
+						<td>					
+						IP 2
+						<input type="text" id="net_ip1" name="name"></input>
+						Netmask
+						<input type="text" id="net_netmask1" name="name"></input>
+						Gateway
+						<input type="text" id="net_gateway1" name="name"></input>
+						</td>
+					</tr>
+					<tr>
+						<td>
+						<input  class="button mright50 menu" str_op="eth1_set"  str_num="1"   type="button" value="Set IP"></input>
+						<input  class="button mright50 menu"  str_op="eth1_udhcpc" str_num="1"   type="button" value="DHCP"></input>
+						</td>
+					</tr>
+					<tr>
+						<td>
+						URL：
+						<input id="dest_ip1" class="site" type="text" name="name" ></input>
+						</td>
+					</tr>
+					<tr>
+						<td>
+						log：
+						<textarea id="eth1_ping_data" name="" rows="5" cols="100"></textarea>
+						<input  class="button on fr" str_op="net_test" str_num="1"  onclick="net_sendMsg($(this).attr('str_num'))" type="button" value="Test"></input>
+						</td>
+					</tr>
+					</table>
+				</div>
+
+				<div class="nav_item" style="display:none;">
+					<table>
+					<tr>
+						<td>					
+						IP 3
+						<input type="text" id="net_ip2" name="name"></input>
+						Netmask
+						<input type="text" id="net_netmask2" name="name"></input>
+						Gateway
+						<input type="text" id="net_gateway2" name="name"></input>
+						</td>
+					</tr>
+					<tr>
+						<td>
+						<input  class="button mright50 menu" str_op="eth2_set"  str_num="2"   type="button" value="Set IP"></input>
+						<input  class="button mright50 menu"  str_op="eth2_udhcpc" str_num="2"   type="button" value="DHCP"></input>
+						</td>
+					</tr>
+					<tr>
+						<td>
+						URL：
+						<input id="dest_ip2" class="site" type="text" name="name" ></input>
+						</td>
+					</tr>
+					<tr>
+						<td>
+						log：
+						<textarea id="eth2_ping_data" name="" rows="5" cols="100"></textarea>
+						<input  class="button on fr" str_op="net_test" str_num="2"  onclick="net_sendMsg($(this).attr('str_num'))" type="button" value="测试"></input>
+						</td>
+					</tr>
+					</table>
+				</div>
+
+				<div class="nav_item" style="display:none;">
+					<table>
+					<tr>
+						<td>					
+						IP 4
+						<input type="text" id="net_ip3"  name="name"></input>
+						Netmask
+						<input type="text" id="net_netmask3"  name="name"></input>
+						Gateway
+						<input type="text" id="net_gateway3"  name="name"></input>
+						</td>
+					</tr>
+					<tr>
+						<td>
+						<input  class="button mright50 menu" str_op="eth3_set"  str_num="3"   type="button" value="Set IP"></input>
+						<input  class="button mright50 menu"  str_op="eth3_udhcpc" str_num="3"   type="button" value="DHCP"></input>
+						</td>
+					</tr>
+					<tr>
+						<td>
+						URL:
+						<input id="dest_ip3" class="site" type="text" name="name" ></input>
+						</td>
+					</tr>
+					<tr>
+						<td>
+						log：
+						<textarea id="eth3_ping_data" name="" rows="5" cols="100"></textarea>
+						<input  class="button on fr" str_op="net_test" str_num="3"  onclick="net_sendMsg($(this).attr('str_num'))" type="button" value="测试"></input>
+						</td>
+					</tr>
+					</table>
+				</div>
+			</section>
+			<section class="tab contact">
+				<h2>Contact Us</h2>
+				<div class="one_item">
+				    E-mail: sales@myirtech.com or myirtech@yahoo.com　　<br>
+					Phone: +86-755-22984836　<br>
+					Fax: +86-755-25532724<br>
+					Address：Room 04, 6th Floor, Building No.2, Fada Road, Yunli Smart Park, Bantian, Longgang District, Shenzhen, Guangdong, China 518129<br>
+				</div>
+				<div class="one_item">
+					<strong>Support</strong><br>
+					Phone:027-59621648 <br>	
+					E-mail:support@myirtech.com<br>
+				</div>
+			</section>
+		</div>
+		<div class="clear"></div>
+	</div>
+	<footer>
+		@2017 米尔科技版权所有
+	</footer>
+</body>
+<script src="statics/css/jquery.js" type="text/javascript"></script>
+<script type="text/javascript">
+
+var portsize = 3;//定义网口数量
+var ledsize = 1;//定义led数量
+var ledsize_static = 1;//
+
+var language="en";
+var web_net;
+var net_show_current=0;
+
+var element_not = {"open_uart_str":"0","close_uart_str":"0","open_can_str":"0","close_can_str":"0","net_set_str":"0","net_dhcp_str":"0","test_str":"0","test111_str":"0"};
+
+   function set_define() {
+	   if(language=="zh"){
+	       element_not.open_uart_str="打开串口";
+	       element_not.close_uart_str="关闭串口";
+	       element_not.open_can_str="打开CAN";
+	       element_not.close_can_str="关闭CAN";
+		   element_not.net_set_str="设置IP";
+	       element_not.net_dhcp_str="自动获取IP";
+		   element_not.test_str="测试";
+	   }else{
+		   element_not.open_uart_str="open";
+	       element_not.close_uart_str="close";
+	       element_not.open_can_str="open";
+	       element_not.close_can_str="close";
+		   element_not.net_set_str="Set IP";
+		   element_not.net_dhcp_str="DHCP";
+	       element_not.test_str="testing";
+	   }
+   }
+
+	var ws = new WebSocket("ws://{{info_ip}}:{{info_port_eth}}/{{info_event}}"); // 新建一个ws连接
+	ws.onopen = function() {
+        set_define();
+        ledlist_sendMsg();
+	};
+	ws.onmessage = function(e){
+			analyze_recv_data(e);
+	};
+
+	function analyze_recv_data(e){
+		var data = e.data;
+		var obj = $.parseJSON(data);
+
+		if(obj.name_cmd=="configure_cmd"){
+			for(var i=0;i<obj.list_232_port.length;i++){
+				 add_select_option("rs232_port_name",'/dev/'+obj.list_232_port[i]);
+			}
+			for(var i=0;i<obj.list_485_port.length;i++){
+				 add_select_option("rs485_port_name",'/dev/'+obj.list_485_port[i]);
+			}
+			for(var i=0;i<obj.list_can_port.length;i++){
+				 add_select_option("can_name",obj.list_can_port[i]);
+			}
+
+			web_net=obj.web_net_using;
+
+		}else if(obj.name_cmd=="rs232_recv_data"){
+			var temp_232=document.getElementById('rs232_recv_data').value;
+			document.getElementById('rs232_recv_data').value= temp_232+obj.data_buff;
+		}else if(obj.name_cmd=="rs485_recv_data"){
+			var temp_485=document.getElementById('rs485_recv_data').value;
+			document.getElementById('rs485_recv_data').value= temp_485+obj.data_buff;
+		}else if(obj.name_cmd=="can_recv_data"){
+			var temp_can=document.getElementById('can_recv_data').value+"\n";
+			document.getElementById('can_recv_data').value= temp_can+"can id :"+obj.data_id+"  can data:"+obj.data_buff;
+		}else if(obj.name_cmd=="eth_data"){
+			portsize =  obj.eth_number;
+//			net_show_update(portsize);
+			if(obj.control=="data_buff"){
+
+				var str_net_combination=" ";
+                for(var i=0;i<obj.eth_number;i++){
+//					var temp_eth_name="eth"+i;
+//					if(obj.list_data[i*5]==temp_eth_name){
+					    var tmp_vv = obj.list_data[i*5+0].substring(3);
+//					    var tmp_cc  = tmp_vv + " ";
+					    str_net_combination = str_net_combination + tmp_vv + " ";
+						document.getElementById("net_ip"+tmp_vv).value = obj.list_data[i*5+2];
+						document.getElementById("net_netmask"+tmp_vv).value = obj.list_data[i*5+3];
+						document.getElementById("net_gateway"+tmp_vv).value = obj.list_data[i*5+4];
+//					}
+                }
+                net_show_update(obj.eth_number,str_net_combination.substring(1));
+
+			}else if(obj.control=="ping")
+			{   var log_ping;
+				log_ping = document.getElementById('eth'+obj.eth_name.slice(3)+'_ping_data').value;
+				document.getElementById('eth'+obj.eth_name.slice(3)+'_ping_data').value = log_ping + "\n" + obj.ping_data;
+			}
+		}else if(obj.name_cmd=="led_recv_data"){
+				 var  led_statu="f";
+                 var  led_data;
+				 if(obj.list_va==1){   // update led list
+				     led_data = obj.data_buff.split("\n");
+                     ledsize_static = led_data.length-1;
+					 for (var i = 1; i <= led_data.length; i++) {
+						 var Median_str = led_data[i-1].split(" ");
+						 document.getElementById('led' + i).value = Median_str[0];
+						 if (Median_str[1]==0){
+							led_statu="statics/images_en/led_red.png";
+						 }else {
+							led_statu="statics/images_en/led_green.png";
+						 }
+						 document.getElementById('img'+ i).src=led_statu;
+					 }
+				 }else{   // update led status
+                    led_data = obj.data_buff;
+                    var Median_str= led_data.split(" ");
+                    for(var i=1;i< ledsize_static+1 ;i++){
+                       if(document.getElementById('led' + i).value == Median_str[0]){
+							 if (Median_str[1]==0){
+								led_statu="statics/images_en/led_red.png";
+							 }else {
+								led_statu="statics/images_en/led_green.png";
+							 }
+							 document.getElementById('img'+ i).src=led_statu;
+					   }
+					}
+				 }
+				 led_update(ledsize_static);
+
+		}else if(obj.name_cmd=="status_data"){
+			     var tmp_var;
+				if(obj.name_status=="can_statuss"){
+					if(obj.status_operation=="successed"){
+				    	document.getElementById('can_button').value = element_not.close_can_str;
+					}
+					if(obj.status_rdy==1){
+//						document.getElementById('can_loop').value = obj.can_loop;
+//						document.getElementById('can_baudrate').value = obj.baudrate;
+//						document.getElementById('can_name').value = obj.name_can;
+						var all_options;
+						all_options = document.getElementById("can_loop").options;
+						all_options[obj.can_loop_1-1].selected = true;
+						all_options = document.getElementById("can_baudrate").options;
+						all_options[obj.baudrate_1-1].selected = true;
+//						all_options = document.getElementById("can_name").options;
+//						all_options[obj.name_can-1].selected = true;
+					}
+					return;
+				}
+
+			     tmp_var=obj.name_status.split("_");
+			     if(obj.name_status== (tmp_var[0]+"_status")){
+
+				    if(obj.status_operation=="successed"){
+				    	document.getElementById(tmp_var[0]+'_button').value = element_not.close_uart_str;
+					}
+					if(obj.status_rdy==1){
+						var all_options;
+						all_options = document.getElementById(tmp_var[0]+"_baud_rate").options;
+						all_options[obj.baudrate_1-1].selected = true;
+						all_options = document.getElementById(tmp_var[0]+"_databit").options;
+						all_options[obj.databit_1-1].selected = true;
+						all_options = document.getElementById(tmp_var[0]+"_checkbit").options;
+						all_options[obj.stopbit_1-1].selected = true;
+						all_options = document.getElementById(tmp_var[0]+"_stopbit").options;
+						all_options[obj.stopbit_1-1].selected = true;
+					}
+					return;
+				 }
+
+			}
+	}
+
+    function change_parameter(arg)
+	{
+		// 发送关闭信号
+		var data = new Object;
+		data.cmd="uart_cmd";
+		data.control = 0;
+		switch(arg)
+		{
+			case 'rs232_change': 
+				data.cmd="uart_cmd";
+				data.name=document.getElementById("rs232_port_name").value;
+				document.getElementById('rs232_button').value = element_not.open_uart_str;
+				break;
+			case 'rs485_change': 
+				data.cmd="uart485_cmd";
+				data.name=document.getElementById("rs485_port_name").value;
+			    document.getElementById('rs485_button').value = element_not.open_uart_str;
+				break;
+			case 'can_change':
+			    data.cmd="can_cmd";
+				data.name=document.getElementById("can_name").value;
+				document.getElementById('can_button').value = element_not.open_can_str;
+				break;
+		}
+		var str = JSON.stringify(data);
+		ws.send(str);
+	}
+	function net_sendMsg(arg){
+		var data = new Object;
+		net_show_current=arg;
+		data.cmd="eth_cmd";
+		data.control = 3;
+		data.name = "eth" + arg;
+		data.ping_addr = document.getElementById("dest_ip" + arg).value;
+		var str = JSON.stringify(data);
+		ws.send(str);			
+	}
+	//	动态添加下拉列表项
+	function add_select_option (arg,arg1) {
+			var cbbYear = document.getElementById(arg);
+			for (var i = 0; i < 1; i++) {
+				//方法1
+				var opt = document.createElement("option");
+				opt.innerHTML = arg1;
+				cbbYear.appendChild(opt);
+				//方法2
+				// var opt = new Option(i, i);
+				// cbbYear.options.add(opt);
+				// 设置当前选项使能
+				var all_options = document.getElementById(arg).options;
+					all_options[all_options.length-1].selected = true;
+			}
+        }
+
+    function ledlist_sendMsg(arg){
+			var data = new Object;
+			data.cmd="led_cmd";
+			data.control=2;
+			data.name="led_list";
+			var str = JSON.stringify(data);
+			ws.send(str);
+		}
+
+    function led_set_sendMsg(arg_name,arg_value){
+			var data = new Object;
+			var arg_value;
+			if(arg_value=="led_open"){
+			    arg_value=1;
+			}else if(arg_value=="led_close"){
+			    arg_value=0;
+			}else arg_value=3;
+			data.cmd="led_cmd";
+			data.name=arg_name;
+			data.value_set=arg_value;
+			var str = JSON.stringify(data);
+			ws.send(str);
+		}
+	function led_update(arg){
+		$("#led .one_item").each(function(index,val){
+		    if(index<arg){
+				$(this).show();
+			}
+		});
+    }
+
+	function net_show_update(num,str_net){
+        var vv=str_net.split(" ");
+		$("#netcalss").empty();
+		for(var i=0;i<num;i++)
+		{
+			var port;
+			port  = i;
+			$(".nav").append("<span data='"+vv[i]+"'>ETH"+vv[i]+"</span>");
+		}
+
+		$(".nav span").click(function()
+		{
+			var index = $(this).attr('data');
+
+			$(".nav span").removeClass("current");
+			$(this).addClass("current");
+			$(".nav_item").hide();
+			$(".nav_item:eq("+index+")").show();
+	    });
+		$(".nav span:eq("+net_show_current+")").click();
+    }
+
+//uart  232
+         function uart_sendMsg(arg,arg2){
+			var data = new Object;
+			data.cmd="uart_cmd";
+			data.control = 11;
+			if(arg=="operate"){
+			    if(arg2==element_not.open_uart_str){
+					data.control = 1;
+					data.name = document.getElementById("rs232_port_name").value;
+					// set parameter
+					data.baud_rate=document.getElementById("rs232_baud_rate").value;
+					data.databit=document.getElementById("rs232_databit").value;
+					data.checkbit=document.getElementById("rs232_checkbit").value;
+					data.stopbit=document.getElementById("rs232_stopbit").value;
+				}else if(arg2==element_not.close_uart_str){
+					data.control = 0;
+			     	data.name=document.getElementById("rs232_port_name").value;
+			     	document.getElementById('rs232_button').value = element_not.open_uart_str;
+				}
+			}else if(arg=="send"){
+			    data.control = 3;
+				data.buf_data=document.getElementById("rs232_buf_data").value;
+			}else if(arg=="clear")
+			{
+			 	document.getElementById("rs232_recv_data").value=" ";
+			 	return;
+			}else ;
+			var str = JSON.stringify(data);
+			ws.send(str);
+        }
+// rs485
+         function uart485_sendMsg(arg,arg2){
+			var data = new Object;
+			data.cmd="uart485_cmd";
+			data.control = 11;
+			 if(arg=="operate"){
+			    if(arg2==element_not.open_uart_str){
+					data.control = 1;
+					data.name = document.getElementById("rs485_port_name").value;
+					// set parameter
+					data.baud_rate=document.getElementById("rs485_baud_rate").value;
+					data.databit=document.getElementById("rs485_databit").value;
+					data.checkbit=document.getElementById("rs485_checkbit").value;
+					data.stopbit=document.getElementById("rs485_stopbit").value;
+				}else if(arg2==element_not.close_uart_str){
+	  				data.control = 0;
+			     	data.name=document.getElementById("rs485_port_name").value;
+			     	document.getElementById('rs485_button').value = element_not.open_uart_str;
+				}
+			}else if(arg=="send"){
+			    data.control = 3;
+				data.buf_data=document.getElementById("rs485_buf_data").value;
+			}else if(arg=="clear")
+			{
+			 	document.getElementById("rs485_recv_data").value=" ";
+			 	return;
+			}else ;
+			var str = JSON.stringify(data);
+			ws.send(str);
+        }
+// can
+         function can_sendMsg(arg,arg2){
+			var data = new Object;
+			data.cmd="can_cmd";
+			data.control = 11;
+			data.name = document.getElementById("can_name").value;
+			data.can_id = document.getElementById("can_id").value;
+			data.can_loop = document.getElementById("can_loop").value;
+			data.baud_rate=document.getElementById("can_baudrate").value;
+
+			if(arg=="operate") {
+				if (arg2 == element_not.open_can_str) {  // open
+					data.control = 1;
+					data.name = document.getElementById("can_name").value;
+					data.baud_rate=document.getElementById("can_baudrate").value;
+				}else if(arg2 == element_not.close_can_str){  // close
+					data.control = 0;
+				 	data.name=document.getElementById("can_name").value;
+					document.getElementById('can_button').value = element_not.open_can_str;
+				}
+			}else if(arg=="close")
+			{    data.control = 0;
+				 data.name=document.getElementById("can_name").value;
+				 document.getElementById('can_button').value = element_not.close_can_str;
+			}else if(arg=="send"){
+				data.control = 3;
+				data.can_id = document.getElementById("can_id").value;
+				data.name=document.getElementById("can_name").value;
+				data.buf_data=document.getElementById("can_buf_data").value;
+			}else if(arg=="clear")
+			{
+				document.getElementById("can_recv_data").value=" ";
+				return;
+			}else ;
+
+			var str = JSON.stringify(data);
+			ws.send(str);
+        }
+
+$(document).ready(function(){	
+	$(".nav").html("");
+	if(ledsize<1){
+		ledsize = 1;
+	}
+	if(ledsize>6){
+		ledsize = 6;
+	}
+	if(portsize<1){
+		portsize = 1;
+	}
+	if(portsize>4){
+		portsize = 4;
+	}
+//	 for(var i=0;i<portsize;i++)
+//	 {
+//	 	var port = i+1;
+//	 	$(".nav").append("<span data='"+i+"'>网口"+port+"</span>");
+//	 }
+
+	$(".menus").click(function(){
+		var index = 1+$(".menus").index(this);
+		$(".menus").each(function(){
+			var index = 1+$(".menus").index(this);
+			$(this).removeClass("menu"+index+"_on");
+			$(this).addClass("menu"+index);
+		});
+		$(this).removeClass("menu"+index);
+		$(this).addClass("menu"+index+"_on");
+		$(".tab").each(function(){
+			var tab = 1+$(".tab").index(this);
+			if(tab==index){
+				$(this).show();
+			}else{
+				$(this).hide();
+			}
+		});
+	
+	});
+	$(".menu1").click();
+	$(".menu").click(function(){
+		$(this).parent().children(".menu").removeClass("on");
+		$(this).addClass("on");
+		if($(this).attr("value") == 'LED_ON'){
+			$(this).parent().children(".led").attr('src',"statics/images_en/led_green.png");
+			var led_name="led" + $(this).attr("str_num");
+			var led_name_str= document.getElementById(led_name).value;
+			led_set_sendMsg(led_name_str,$(this).attr("str_op"));
+		}
+		if($(this).attr("value") == 'LED_OFF'){
+			$(this).parent().children(".led").attr('src',"statics/images_en/led_red.png");
+			var led_name="led" + $(this).attr("str_num");
+			var led_name_str= document.getElementById(led_name).value;
+			led_set_sendMsg(led_name_str,$(this).attr("str_op"));
+		}
+
+//		if($(this).attr("value") == '打开串口'){
+//			var led_name_str= document.getElementById("led5").value;
+//			led_set_sendMsg(led_name_str,$(this).attr("str_op"));
+//		}
+//		if($(this).attr("value") == '关闭串口'){
+//			var led_name_str= document.getElementById("led5").value;
+//			led_set_sendMsg(led_name_str,$(this).attr("str_op"));
+//		}
+
+    function firm() {
+        var info;
+        if (language == "zh") {
+            info = "设置IP后，会重启开发板，是否执行?";
+        }else{
+        	info = "After the IP is set, the development board will be restarted. Is it executed?";
+    	}
+        if (confirm(info)) {
+            return 1;
+        }
+        else {
+            return 0;
+        }
+    }
+		// set ip
+		if($(this).attr("value") == element_not.net_set_str){
+			var data = new Object;
+            var ret=0;
+            var ret_va=0,tmp;
+		    net_show_current=$(this).attr("str_num");
+			switch (ret_va){
+				case 0:
+				    tmp= document.getElementById("net_ip"+$(this).attr("str_num")).value;
+				    if(tmp == "" || tmp == null || tmp == undefined){
+						ret_va=3;
+					}else{  ret_va=1;
+				    }
+				case 1:
+					tmp= document.getElementById("net_netmask"+$(this).attr("str_num")).value;
+				    if(tmp == "" || tmp == null || tmp == undefined){
+						ret_va=3;
+					}else{  ret_va=2;
+				    }
+				case 2:
+				    tmp= document.getElementById("net_gateway"+$(this).attr("str_num")).value;
+				    if(tmp == "" || tmp == null || tmp == undefined){
+						ret_va=3;
+					}else{  ret_va=4;
+				    }
+				case 3:
+					if(ret_va==4) break;
+				    if(language=="en")
+					{  alert("There are parameters not filled out !");  }
+				    else
+					{  alert(" 有参数没有填写 ！");  }
+				    break;
+			}
+			if(ret_va==3){
+			     return;
+			}
+
+			if(web_net== ("eth"+$(this).attr("str_num") ) )
+               ret=firm();
+			else
+			    ret=1;
+
+			if(ret){
+				data.cmd="eth_cmd";
+				data.control = 1;
+				data.name = "eth" + $(this).attr("str_num");
+				data.dest_addr=document.getElementById("net_ip"+$(this).attr("str_num")).value;
+				data.dest_netmask=document.getElementById("net_netmask"+$(this).attr("str_num")).value;
+				data.dest_gateway=document.getElementById("net_gateway"+$(this).attr("str_num")).value;
+				var str = JSON.stringify(data);
+				ws.send(str);
+			}
+		}
+		
+		// udhcpc
+		if($(this).attr("value") == element_not.net_dhcp_str){
+			var data = new Object;
+			net_show_current=$(this).attr("str_num");
+
+			data.cmd="eth_cmd";
+			data.control = 2;
+			data.name = "eth" + $(this).attr("str_num");
+			var str = JSON.stringify(data);
+			ws.send(str);
+		}
+
+	});
+
+//	 $(".nav span").click(function(){
+//	 	var index = $(this).attr('data');
+//	 	$(".nav span").removeClass("current");
+//	 	$(this).addClass("current");
+//	 	$(".nav_item").hide();
+//	 	$(".nav_item:eq("+index+")").show();
+//	 });
+//	 $(".nav span:eq(0)").click();
+
+	$("#led .one_item").each(function(index,val){
+		if(index<ledsize){
+			$(this).show();
+		}
+	});
+
+	$(".language").click(function(){
+		var myForm = document.createElement("form");
+		myForm.method = "post";
+		myForm.action = "/myir_z";
+		var opt = document.createElement("input");
+		opt.name="language";
+		opt.value="zh";
+		myForm.appendChild(opt);
+		document.body.appendChild(myForm);
+		myForm.submit();
+		document.body.removeChild(myForm);
+	});
+	$("#eth_update").click(function(arg){
+		var data = new Object;
+		data.cmd="eth_cmd_upate";
+		data.upate_cmd="eth_cmd_upate";
+		var str = JSON.stringify(data);
+		ws.send(str);
+	});
+
+});
+</script>
+</html>
