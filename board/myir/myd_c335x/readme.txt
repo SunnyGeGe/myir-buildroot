@@ -1,4 +1,5 @@
 MYD-C335X
+=========
 
 History:
 =======
@@ -21,7 +22,10 @@ Buildroot, you have to prepare a SDCard and a USB stick.
 How to build it
 ===============
 
+For NAND: 
   $ make myd_c335x_defconfig
+For EMMC:
+  $ make myd_c335x_emmc_defconfig
 
 Then you can edit the build options using
 
@@ -55,7 +59,7 @@ After building, you should get a tree like this:
   ├── uEnv_usbmsc.txt		# uEnv.txt for usb mass storage device with ext4 rootfs
   ├── uEnv_usbmsc_ramdisk.txt	# uEnv.txt for usb mass storage device with ramdisk rootfs
   ├── uEnv_ramdisk.txt
-  ├── myd_c335x.dtb
+  ├── myd_c335x.dtb           # device tree for nand core board
   ├── myd_c335x_emmc.dtb	# device tree for emmc core boad
   ├── zImage
   ├── rootfs.cpio
@@ -109,6 +113,9 @@ How to use it
   - Set bootmode to nand and poweron
 
 6. Boot from EMMC
+  - Format TF/SD with fat/fat32 format
+  - Copy MLO, u-boot.img, uEnv_ramdisk.txt, zImage, myd_c335x_emmc.dtb, ramdisk.gz to TF/SD card.
+  - Set "fdtfile=myd_c335x_emmc.dtb" in uEnv_ramdisk.txt and rename uEnv_ramdisk.txt to uEnv.txt.
   - Boot from TF/SD and login into linux 
   - Run "/etc/modules-load.myir/updatesys.sh loader2emmc sd" to write the image files from TF/SD to emmc
   - Change the boot mode to emmc and repower up.

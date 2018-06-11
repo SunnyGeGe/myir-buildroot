@@ -7,9 +7,10 @@ BOARD_DIR="$(dirname $0)"
 # copy the uEnv.txt to the output/images directory
 cp board/myir/myd_y335x/uEnv.txt $BINARIES_DIR/uEnv.txt
 cp board/myir/myd_y335x/uEnv_sd.txt $BINARIES_DIR/uEnv_sd.txt
+cp board/myir/myd_y335x/uEnv_sd_ramdisk.txt $BINARIES_DIR/uEnv_sd_ramdisk.txt
 cp board/myir/myd_y335x/uEnv_mmc.txt $BINARIES_DIR/uEnv_mmc.txt
 cp board/myir/myd_y335x/uEnv_usbmsc.txt $BINARIES_DIR/uEnv_usbmsc.txt
-cp board/myir/myd_y335x/uEnv_sd_ramdisk.txt $BINARIES_DIR/uEnv_sd_ramdisk.txt
+cp board/myir/myd_y335x/uEnv_ramdisk.txt $BINARIES_DIR/uEnv_ramdisk.txt
 cp board/myir/myd_y335x/uEnv_usbmsc_ramdisk.txt $BINARIES_DIR/uEnv_usbmsc_ramdisk.txt
 #cp board/myir/myd_y335x/MLO $BINARIES_DIR/MLO
 cp board/myir/myd_y335x/MLO_emmc $BINARIES_DIR/MLO_emmc
