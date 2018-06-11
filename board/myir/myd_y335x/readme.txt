@@ -21,8 +21,10 @@ Buildroot, you have to prepare a SDCard and a USB stick.
 
 How to build it
 ===============
-
+For NAND:
   $ make myd_y335x_defconfig
+For EMMC:
+  $ make myd_y335x_emmc_defconfig
 
 Then you can edit the build options using
 
