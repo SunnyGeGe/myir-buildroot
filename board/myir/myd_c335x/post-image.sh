@@ -26,6 +26,15 @@ cp board/myir/myd_c335x/u-boot_usbmsc.img $BINARIES_DIR/u-boot_usbmsc.img
 cp board/myir/myd_c335x/readme.txt $BINARIES_DIR/readme.txt
 mkimage -A arm -O linux -T ramdisk -C none -a 0x88080000 -n "ramdisk" -d $BINARIES_DIR/rootfs.cpio.gz $BINARIES_DIR/ramdisk.gz
 
+cp board/myir/myd_c335x/kernel.its $BINARIES_DIR/kernel.its
+cp board/myir/myd_c335x/recovery.its $BINARIES_DIR/recovery.its
+mkimage -f  $BINARIES_DIR/kernel.its $BINARIES_DIR/kernel.img
+mkimage -f  $BINARIES_DIR/recovery.its $BINARIES_DIR/recovery.img
+
+cp board/myir/myd_c335x/update.sh $BINARIES_DIR/update.sh
+cp board/myir/myd_c335x/sw-description $BINARIES_DIR/sw-description
+cp board/myir/myd_c335x/generate_swu.sh $BINARIES_DIR/generate_swu.sh
+
 
 GENIMAGE_CFG="${BOARD_DIR}/genimage.cfg"
 GENIMAGE_TMP="${BUILD_DIR}/genimage.tmp"
@@ -38,3 +47,6 @@ genimage \
     --inputpath "${BINARIES_DIR}" \
     --outputpath "${BINARIES_DIR}" \
     --config "${GENIMAGE_CFG}"
+
+cd $BINARIES_DIR
+source $BINARIES_DIR/generate_swu.sh

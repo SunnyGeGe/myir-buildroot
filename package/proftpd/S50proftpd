@@ -21,6 +21,7 @@ start() {
 stop() {
 	printf "Stopping ProFTPD: "
 	killall proftpd
+    	rm -rf /run/proftpd*
         echo "done"
 }
 
@@ -35,6 +36,7 @@ case "$1" in
 
     restart)
     	stop
+        sleep 2
     	start
 	;;
 

@@ -1,0 +1,10 @@
+#!/bin/sh
+
+if [ -f /usr/boot ]; then
+	rm -rf /usr/boot
+fi
+
+date > /usr/boot
+sync
+
+exit 0

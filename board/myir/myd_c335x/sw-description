@@ -1,0 +1,30 @@
+software =
+{
+	version = "1.0";
+	description = "Firmware update for myd-c335x"
+
+	myd-c335x = {
+
+		hardware-compatibility: [ "1.0", "1.1" ];
+		
+		images: (
+			{
+				filename = "rootfs.ubi";
+                device = "/dev/mtd_rootfs";
+				type = "flash";
+			},
+			{
+				filename = "kernel.img";
+				device = "/dev/mtd_kernel";
+				type = "flash";
+			}
+		);
+	
+		scripts: (
+			{
+				filename = "update.sh";
+				type = "shellscript";
+			}
+		);
+	};
+}

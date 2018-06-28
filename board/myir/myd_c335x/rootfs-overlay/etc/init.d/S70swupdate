@@ -1,0 +1,15 @@
+#! /bin/sh
+
+case "$1" in
+	start|"")
+#		swupdate -v -k /etc/swupdate/swupdate-public.pem -w "-document_root /var/www/swupdate/" &
+		swupdate -v -w "-document_root /var/www/swupdate/" &
+		;;
+	stop)
+		killall swupdate
+		;;
+	*)
+		echo "Usage: $0 {start|stop}" >&2
+		exit 1
+		;;
+esac

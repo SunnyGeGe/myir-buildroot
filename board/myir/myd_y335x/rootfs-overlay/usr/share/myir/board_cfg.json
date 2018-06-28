@@ -19,7 +19,7 @@
 			"linux_version": "linux-4.1.18",
 			"uboot_version": "u-boot-2016.05",
 			"gcc_version": "arm-linux-gcc 5.4.0",
-			"manufacturer": "MYIR Tech Limited",
+			"manufacturer": "MYIR Electronics Limited",
 			"board": "MYD-Y335X",
 			"CPU": "TI AM335X",
 			"memory": "256MB",

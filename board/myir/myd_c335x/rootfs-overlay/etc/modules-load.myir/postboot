@@ -1,5 +1,7 @@
 #!/bin/sh
 
+/etc/init.d/boot_end
+
 echo "ok"
 
 
