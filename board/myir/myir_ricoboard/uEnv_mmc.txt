@@ -10,4 +10,4 @@
 #optargs=video=HDMI-A-1:800x600
 
 # Uncomment the following line to enable HDMI display and disable LCD display.
-fdtfile=myir_ricoboard_hdmi.dtb
+fdtfile=myir_ricoboard.dtb

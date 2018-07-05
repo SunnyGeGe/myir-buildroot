@@ -183,7 +183,7 @@ class Parse_command():
                     databit = python_object["databit"]
                     stopbit = python_object["stopbit"]
                     captbit = python_object["checkbit"]
-                    dbus_call_t.serial_set_parameter(GL.fd_tty232, baudrate, databit, 0, 1, captbit, stopbit)
+                    dbus_call_t.serial_set_parameter(GL.fd_tty232, baudrate, databit, 0, 0, captbit, stopbit)
                     self.status_data.status_operation = "successed"
                 else:
                     self.status_data.status_operation = "faild"
@@ -194,7 +194,7 @@ class Parse_command():
             #     databit = python_object["databit"]
             #     stopbit = python_object["stopbit"]
             #     captbit = python_object["checkbit"]
-            #     dbus_call_t.serial_set_parameter(GL.fd_tty232, baudrate, databit, 0, 1, captbit, stopbit)
+            #     dbus_call_t.serial_set_parameter(GL.fd_tty232, baudrate, databit, 0, 0, captbit, stopbit)
             #     self.status_data.status_operation = "successed"
             # else:
             #     self.status_data.status_operation = "faild"
@@ -261,7 +261,7 @@ class Parse_command():
                     databit = python_object["databit"]
                     stopbit = python_object["stopbit"]
                     captbit = python_object["checkbit"]
-                    dbus_call_t.serial_set_parameter(GL.fd_tty485, baudrate, databit, 1, 1, captbit, stopbit)
+                    dbus_call_t.serial_set_parameter(GL.fd_tty485, baudrate, databit, 1, 0, captbit, stopbit)
                     self.status_data.status_operation = "successed"
                 else:
                     self.status_data.status_operation = "faild"
@@ -275,7 +275,7 @@ class Parse_command():
             #     databit = python_object["databit"]
             #     stopbit = python_object["stopbit"]
             #     captbit = python_object["checkbit"]
-            #     dbus_call_t.serial_set_parameter(GL.fd_tty485, baudrate, databit, 1, 1, captbit, stopbit)
+            #     dbus_call_t.serial_set_parameter(GL.fd_tty485, baudrate, databit, 1, 0, captbit, stopbit)
         elif uart_control == 3:  # send
             buf_data = python_object["buf_data"]
             dbus_call_t.serial_send_data(GL.fd_tty485, buf_data, len(buf_data))
@@ -404,8 +404,8 @@ class Parse_command():
             eth_op._eth_handler_to_sent()
         elif eth_control==3:   ##  ping 测试
             ping_ip=python_object["ping_addr"]
-            if judge_legal_ip2(ping_ip):
-               for i in range(10):
+            #if judge_legal_ip2(ping_ip):
+            for i in range(10):
                 ping_log=verbose_ping_2(ping_ip,2)
                 eth_data = MyClass_json()
                 eth_data.name_cmd = "eth_data"

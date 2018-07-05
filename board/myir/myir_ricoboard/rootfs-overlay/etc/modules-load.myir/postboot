@@ -1,0 +1,20 @@
+#!/bin/sh
+
+if test -z "$DBUS_SESSION_BUS_ADDRESS" ; then
+	eval `dbus-launch --sh-syntax`
+	echo "D-Bus per-session daemon address is: $DBUS_SESSION_BUS_ADDRESS"
+fi
+export DBUS_SESSION_BUS_ADDRESS="$DBUS_SESSION_BUS_ADDRESS"
+
+
+/home/myir/mxbackend &
+python /usr/share/myir/www/server.py &
+
+TS_CALIBRATION_FILE=/etc/pointercal
+if [ ! -f $TS_CALIBRATION_FILE ];then
+        export TSLIB_TSDEVICE=/dev/input/touchscreen0
+        ts_calibrate 
+fi
+/home/myir/mxapp --platform linuxfb &
+
+

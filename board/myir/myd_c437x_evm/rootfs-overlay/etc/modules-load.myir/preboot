@@ -1,0 +1,11 @@
+#! /bin/sh
+if grep "UPDATESYS" /proc/cmdline > /dev/null;then
+
+        yes | /updatesys.sh
+
+fi
+if grep "PCBA_TEST" /proc/cmdline > /dev/null;then
+
+        pcba_test -a &
+
+fi

@@ -5,7 +5,7 @@ load_drivers()
 {
 	while IFS= read -r line; do
 		modprobe $line
-	done < "/etc/modules-load.myir_ricoboard/$1.conf"
+	done < "/etc/modules-load.myir/$1.conf"
 }
 
 do_board()

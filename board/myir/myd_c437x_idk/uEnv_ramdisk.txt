@@ -11,7 +11,7 @@
 
 # Uncomment the following line to enable HDMI display and disable LCD display.
 fdtfile=myd_c437x_idk.dtb
-#fdtfile=myd_c437x_lcd7i.dtb
+#fdtfile=myd_c437x_idk_lcd.dtb
 devtype=mmc
 devnum=0
 bootdir=/

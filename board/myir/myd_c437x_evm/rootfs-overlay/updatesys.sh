@@ -239,7 +239,7 @@ emmc_update()
 	cp $SD_MOUNT_POINT/$FILE_DEFAULT_UENV $EMMC_BOOT_MP/uEnv.txt
 
 	echo "===> Updating filesystem to emmc..."
-	tar xzf $SD_MOUNT_POINT/$FILE_FILESYSTEM -C $EMMC_ROOTFS_MP
+	tar mxzf $SD_MOUNT_POINT/$FILE_FILESYSTEM -C $EMMC_ROOTFS_MP
 	if [ $? -ne 0 ]; then
 		echo "===> Update eMMC failed"
 		umount $EMMC_ROOTFS_MP > /dev/null 2>&1

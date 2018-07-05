@@ -3,7 +3,6 @@
 
 case "$1" in
   start)
-        /usr/bin/psplash-write "PROGRESS 100"	
 	/etc/modules-load.myir/postboot
 	;;
   stop)

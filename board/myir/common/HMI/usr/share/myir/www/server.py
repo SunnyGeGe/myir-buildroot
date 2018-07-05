@@ -69,7 +69,7 @@ def main():
             ip_addr=eth_list_server[5]
             GL.net_name=eth_list_server[3]
         else:
-            time.sleep(1)
+            time.sleep(3)
             eth_server_cnt=0
             print "Waiting for network services"
 

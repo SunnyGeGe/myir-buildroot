@@ -1,0 +1,37 @@
+{
+	"board_info": {
+		"rs232": [
+			"ttyO3"
+		],
+		"rs485": [
+			"ttyO5"
+		],
+		"can": [
+			"can0",
+			"can1"
+		],
+		"led": {
+			"myc:blue:cpu0": "D36->Core Board",
+			"myd:blue:heartbeat": "D34->Base Board",
+			"myd:blue:mmc1": "D35->Base Board",
+			"myd:blue:usr3": "D36->Base Board"
+		},
+		"system": {
+			"HMI_version": "MEasy HMI V1.0",
+			"linux_version": "linux-4.1.18",
+			"uboot_version": "u-boot-2016.05",
+			"gcc_version": "arm-linux-gcc 5.4.0",
+			"manufacturer": "MYIR Electronics Limited",
+			"board": "MYD-C437X",
+			"CPU": "TI AM4378",
+			"memory": "512MB",
+			"storage": "4GB"
+		}
+	},
+
+	"dbus_info": {
+		"dbus_name": "com.myirtech.mxde",
+		"dbus_path": "/com/myirtech/mxde",
+		"dbus_interface": "com.myirtech.mxde.MxdeInterface"
+	}
+}

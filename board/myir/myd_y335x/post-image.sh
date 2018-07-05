@@ -2,6 +2,7 @@
 # post-image.sh for MYD-Y335X
 # 2016, Sunny Guo <sunny.guo@myirtech.com>
 
+export MTOOLS_SKIP_CHECK=1
 BOARD_DIR="$(dirname $0)"
 
 # copy the uEnv.txt to the output/images directory

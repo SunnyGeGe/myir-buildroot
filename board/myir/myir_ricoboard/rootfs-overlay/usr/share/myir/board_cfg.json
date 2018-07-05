@@ -1,0 +1,33 @@
+{
+	"board_info": {
+		"rs232": [
+		],
+		"rs485": [
+		],
+		"can": [
+		],
+		"led": {
+			"status_led0": "D23->Base Board",
+			"status_led1": "D24->Base Board",
+			"status_led2": "D25->Base Board",
+			"status_led3": "D26->Base Board"
+		},
+		"system": {
+			"HMI_version": "MEasy HMI V1.0",
+			"linux_version": "linux-4.1.18",
+			"uboot_version": "u-boot-2016.05",
+			"gcc_version": "arm-linux-gcc 5.4.0",
+			"manufacturer": "MYIR Electronics Limited",
+			"board": "Rico Board",
+			"CPU": "TI AM4378",
+			"memory": "512MB",
+			"storage": "4GB"
+		}
+	},
+
+	"dbus_info": {
+		"dbus_name": "com.myirtech.mxde",
+		"dbus_path": "/com/myirtech/mxde",
+		"dbus_interface": "com.myirtech.mxde.MxdeInterface"
+	}
+}
