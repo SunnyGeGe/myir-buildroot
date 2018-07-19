@@ -106,6 +106,7 @@ How to use it
 
 5. Boot from Nand
   - Copy MLO, u-boot.img, uEnv_ramdisk.txt, zImage, myd_c335x.dtb, ramdisk.gz, rootfs.ubi to TF/SD card.
+  - Rename uEnv_ramdisk.txt to uEnv.txt
   - Insert the TF/SD card to slot, and set bootmode to mmc0
   - PowerOff and PowerOn to boot from TF/SD card, press 'space' to interrupt u-boot and enter the u-boot console
   - Execute 'run updatesys' in u-boot console to write MLO, u-boot.img, zImage, myd_c335x.dtb, rootfs.ubi to nand
