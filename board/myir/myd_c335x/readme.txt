@@ -69,7 +69,7 @@ After building, you should get a tree like this:
   ├── rootfs.ext4
   ├── rootfs.tar
   ├── rootfs.tar.gz
-  ├── rootfs.ubi
+  ├── rootfs.ubi        # rootfs image for NAND Flash
   ├── rootfs.ubifs
   ├── sdcard.img		# disk image for sd card with ext4 rootfs
   └── zImage
@@ -115,7 +115,7 @@ How to use it
 
 6. Boot from EMMC
   - Format TF/SD with fat/fat32 format
-  - Copy MLO, u-boot.img, uEnv_ramdisk.txt, zImage, myd_c335x_emmc.dtb, ramdisk.gz to TF/SD card.
+  - Copy all images file compiling with "myd_c335x_emmc_defconfig" to the TF/SD card.
   - Set "fdtfile=myd_c335x_emmc.dtb" in uEnv_ramdisk.txt and rename uEnv_ramdisk.txt to uEnv.txt.
   - Boot from TF/SD and login into linux 
   - Run "/etc/modules-load.myir/updatesys.sh loader2emmc sd" to write the image files from TF/SD to emmc
