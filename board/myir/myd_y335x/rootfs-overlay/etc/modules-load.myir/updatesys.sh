@@ -468,7 +468,7 @@ nand_update()
         flash_erase /dev/mtd8 0 0
         nandwrite -p /dev/mtd8 $SD_MOUNT_POINT/$FILE_ZIMAGE
         flash_erase /dev/mtd9 0 0
-        ubiformat /dev/mtd9 -f $SD_MOUNT_POINT/$FILE_FILESYSTEM_NAND  -s 2048 -O 2048
+        ubiformat /dev/mtd9 -f $SD_MOUNT_POINT/$FILE_FILESYSTEM_NAND  -s 4096 -O 4096
         sync
 
 

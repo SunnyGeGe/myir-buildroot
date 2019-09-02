@@ -24,8 +24,8 @@
 			"manufacturer": "MYIR Electronics Limited",
 			"board": "MYD-J335X",
 			"CPU": "TI AM335X",
-			"memory": "256MB",
-			"storage": "256MB NAND"
+			"memory": "1024MB",
+			"storage": "1024MB NAND"
 		}
 	},
 
