@@ -23,9 +23,8 @@ How to build it
 ===============
 
 For NAND: 
-  $ make myd_c335x_defconfig     	-- without dualbackup
-  $ make myd_c335x_backup_defconfig     -- with dualbackup
-For EMMC(does not support dualbackup):
+  $ make myd_c335x_defconfig
+For EMMC:
   $ make myd_c335x_emmc_defconfig
 
 Then you can edit the build options using
@@ -63,8 +62,6 @@ After building, you should get a tree like this:
   ├── myd_c335x.dtb           # device tree for nand core board
   ├── myd_c335x_emmc.dtb	# device tree for emmc core boad
   ├── zImage
-  ├── kernel.img		# kernel image with zImage and device tree be included.
-  ├── recovery.img		# recovery image with zImage and device tree and ramdisk be included.
   ├── rootfs.cpio
   ├── rootfs.cpio.gz
   ├── rootfs.cpio.uboot
@@ -81,7 +78,7 @@ How to use it
 ===============
 1. Boot from TF/SD card with ramdisk
   - Format TF/SD with fat/fat32 format
-  - Copy MLO, u-boot.img, uEnv_ramdisk.txt, zImage, myd_c335x.dtb, ramdisk.gz and images directory to TF/SD card.
+  - Copy MLO, u-boot.img, uEnv_ramdisk.txt, zImage, myd_c335x.dtb, ramdisk.gz to TF/SD card.
   - Rename uEnv_ramdisk.txt to uEnv.txt
   - Insert the TF/SD card to slot, and set bootmode to mmc0
   - Powreoff and poweron to boot from TF/SD card with ramdisk
@@ -108,7 +105,7 @@ How to use it
   - bootz  ${loadaddr} ${rdaddr} ${fdtaddr}
 
 5. Boot from Nand
-  - Copy MLO, u-boot.img, uEnv_ramdisk.txt, zImage, myd_c335x.dtb, ramdisk.gz, rootfs.ubi and images directory to TF/SD card.
+  - Copy MLO, u-boot.img, uEnv_ramdisk.txt, zImage, myd_c335x.dtb, ramdisk.gz, rootfs.ubi to TF/SD card.
   - Rename uEnv_ramdisk.txt to uEnv.txt
   - Insert the TF/SD card to slot, and set bootmode to mmc0
   - PowerOff and PowerOn to boot from TF/SD card, press 'space' to interrupt u-boot and enter the u-boot console
@@ -124,6 +121,12 @@ How to use it
   - Run "/etc/modules-load.myir/updatesys.sh loader2emmc sd" to write the image files from TF/SD to emmc
   - Change the boot mode to emmc and repower up.
 
+7. Age test
+  - Use supervisord to manager memtester, ping, iperf3 to do age test
+  - Log stored at /home/ftp/log
+  - ping test on eth0(dhcp from router with LAN:192.168.50.x), and iperf3 test on eth1(192.168.1.x),
+    if x is odd, it works as server, if x is even, it works as client.They work as pairs and connect directly.
+
 Auto Update System
 ==================
 Users can update system from sd to nand or emmc automatically by setting different optargs in uEnv.txt
@@ -132,11 +135,7 @@ Users can update system from sd to nand or emmc automatically by setting differe
   - Add "optargs = updatesys_from_sd_to_nand" to the uEnv.txt in TF/SD
   - Boot from TF/SD
   - Please refer to uEnv_updatesys_nand.txt
-2. Auto update with dualbackup from sd to nand
-  - Add "optargs = updatesys2_from_sd_to_nand" to the uEnv.txt in TF/SD
-  - Boot from TF/SD
-  - Please refer to uEnv_updatesys_nand.txt
-3. Auto update from sd to emmc
+2. Auto update from sd to emmc
   - Add "optargs = updatesys_from_sd_to_emmc" to the uEnv.txt in TF/SD
   - Boot from TF/SD
   - Please refer to uEnv_updatesys_emmc.txt

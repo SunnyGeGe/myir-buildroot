@@ -1,28 +1,9 @@
 #!/bin/sh
+fail()
+{
+    echo -e "$1"    
+    /bin/bash
+}
 
-mount -t jffs2 /dev/mtdblock15 /overlay
-
-if [ ! -f /overlay/upper/usr/boot ]; then
-	/bin/umount /dev/mtdblock15
-	flash_eraseall /dev/mtd15
-	/bin/mount -t jffs2 /dev/mtdblock15  /overlay
-else
-	rm -rf /overlay/upper/usr/boot
-fi
-
-mkdir -p /overlay/upper
-mkdir -p /overlay/work
-
-mount -t overlay overlay -o rw,noatime,lowerdir=/,upperdir=/overlay/upper,workdir=/overlay/work  /system
-
-mount -n -o noatime --move /proc  /system/proc
-
-pivot_root  /system  /system/rom
-
-mount -n -o noatime --move /rom/dev  /dev
-mount -n -o noatime --move /rom/tmp  /tmp
-mount -n -o noatime --move /rom/run  /run
-mount -n -o noatime --move /rom/sys  /sys
-mount -n -o noatime --move /rom/overlay  /overlay
-
+echo "[MYIR] Prestart booting..."
 exit 0

@@ -2,6 +2,6 @@
 
 /etc/init.d/boot_end
 
-echo "ok"
+echo "[MYIR] Postboot success."
 
 

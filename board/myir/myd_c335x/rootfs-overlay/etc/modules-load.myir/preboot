@@ -24,6 +24,14 @@ if grep "updatesys_from_usbmsc_to_nand" /proc/cmdline > /dev/null;then
 	echo
 	yes | /etc/modules-load.myir/updatesys.sh loader2nand usbmsc
 fi
+if grep "updatesys2_from_usbmsc_to_nand" /proc/cmdline > /dev/null;then
+	echo
+	echo "***********************************************"
+	echo "*** SYSTEM UPDATE with DUALBACKUP FROM USBMSC TO NAND *********"
+	echo "***********************************************"
+	echo
+	yes | /etc/modules-load.myir/updatesys2.sh loader2nand usbmsc
+fi
 if grep "updatesys_from_sd_to_nand" /proc/cmdline > /dev/null;then
 	echo
 	echo "***********************************************"
@@ -31,4 +39,12 @@ if grep "updatesys_from_sd_to_nand" /proc/cmdline > /dev/null;then
 	echo "***********************************************"
 	echo
 	yes | /etc/modules-load.myir/updatesys.sh loader2nand sd
+fi
+if grep "updatesys2_from_sd_to_nand" /proc/cmdline > /dev/null;then
+	echo
+	echo "***********************************************"
+	echo "*** SYSTEM UPDATE with DUALBACKUP FROM SDCARD TO NAND *********"
+	echo "***********************************************"
+	echo
+	yes | /etc/modules-load.myir/updatesys2.sh loader2nand sd
 fi

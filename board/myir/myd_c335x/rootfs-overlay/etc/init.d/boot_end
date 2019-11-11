@@ -1,10 +1,35 @@
 #!/bin/sh
 
+ROOTFSID="0"; 
+function get_rootfs_id(){   
+	for i in `fw_printenv rootfsid`; do
+		case "$i" in
+			rootfsid=*)
+			ROOTFSID="${i#rootfsid=}"
+			;;
+		esac
+	done
+}
+
 if [ -f /usr/boot ]; then
 	rm -rf /usr/boot
 fi
 
 date > /usr/boot
+
+get_rootfs_id
+echo "[MYIR] Postboot rootfsid=$ROOTFSID"
+if [ $ROOTFSID == "1" ]; then
+	echo "[MYIR] Maybe NAND.rootfs is corrupted, boot from NAND.rootfs.backup1 success."
+	echo "[MYIR] Users should recovery NAND.rootfs here!"
+elif [ $ROOTFSID == "0" ]; then
+	echo "[MYIR] Boot from NAND.rootfs success."
+	echo "[MYIR] Check NAND.rootfs.backup1, if it's corrupted, users should recovery NAND.rootfs.backup1 here!"
+elif [ $ROOTFSID == "2" ]; then
+	fw_setenv recoveryid 2
+#	reboot	
+fi
+
 sync
 
 exit 0

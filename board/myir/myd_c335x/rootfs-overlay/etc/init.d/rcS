@@ -26,4 +26,4 @@ for i in /etc/init.d/S??* ;do
     esac
 done
 
-/etc/init.d/boot_end
+#/etc/init.d/boot_end  # run at the end of /etc/modules-load.myir/postboot

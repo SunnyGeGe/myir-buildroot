@@ -16,6 +16,8 @@
 #	update images from sd to emmc 
 # Date: 2019.07.31
 #	Change the directory of images 
+# Date: 2019.10.29
+# 	A branch for nand dual backup upating.	
 
 
 # The path sdcard mounted
@@ -40,7 +42,8 @@ elif [ "$1" == "loader2nand" ]; then
 	FILE_UBOOT="images/u-boot_nand.img"
 fi
 
-FILE_ZIMAGE="images/zImage"
+FILE_ZIMAGE="images/kernel.img"
+FILE_RECOVERY="images/recovery.img"
 FILE_DEVICETREE="images/myd_c335x.dtb"
 FILE_DEVICETREE_EMMC="images/myd_c335x_emmc.dtb"
 FILE_FILESYSTEM="images/rootfs.tar.gz"
@@ -178,6 +181,13 @@ check_files_in_sdcard()
 	# Check zImage
 	if [ ! -f "$SD_MOUNT_POINT/$FILE_ZIMAGE" ]; then
 		echo "===> Update failed, $SD_MOUNT_POINT/$FILE_ZIMAGE not exists"
+		update_fail $1 $2
+		exit 1
+	fi
+
+	# Check recovery image 
+	if [ ! -f "$SD_MOUNT_POINT/$FILE_RECOVERY" ]; then
+		echo "===> Update failed, $SD_MOUNT_POINT/$FILE_RECOVERY not exists"
 		update_fail $1 $2
 		exit 1
 	fi
@@ -468,10 +478,24 @@ nand_update()
         flash_erase /dev/mtd7 0 0
 
         flash_erase /dev/mtd8 0 0
-        nandwrite -p /dev/mtd8 $SD_MOUNT_POINT/$FILE_ZIMAGE
+        nandwrite -p /dev/mtd8 $SD_MOUNT_POINT/$FILE_UBOOT
 
-	flash_erase /dev/mtd9 0 0
-        ubiformat /dev/mtd9 -f $SD_MOUNT_POINT/$FILE_FILESYSTEM_NAND  -s 2048 -O 2048
+        flash_erase /dev/mtd9 0 0
+        nandwrite -p /dev/mtd9 $SD_MOUNT_POINT/$FILE_UBOOT
+
+        flash_erase /dev/mtd10 0 0
+        nandwrite -p /dev/mtd10 $SD_MOUNT_POINT/$FILE_ZIMAGE
+
+        flash_erase /dev/mtd11 0 0
+        nandwrite -p /dev/mtd11 $SD_MOUNT_POINT/$FILE_ZIMAGE
+        
+	flash_erase /dev/mtd12 0 0
+        nandwrite -p /dev/mtd12 $SD_MOUNT_POINT/$FILE_RECOVERY
+
+	flash_erase /dev/mtd13 0 0
+        ubiformat /dev/mtd13 -f $SD_MOUNT_POINT/$FILE_FILESYSTEM_NAND  -s 2048 -O 2048
+	flash_erase /dev/mtd14 0 0
+        ubiformat /dev/mtd14 -f $SD_MOUNT_POINT/$FILE_FILESYSTEM_NAND  -s 2048 -O 2048
         sync
 }
 
