@@ -1,5 +1,5 @@
 #!/bin/sh
-
+#/usr/bin/psplash &
 /etc/init.d/boot_start
 
 # Start all init scripts in /etc/init.d
@@ -9,7 +9,7 @@ for i in /etc/init.d/S??* ;do
 
      # Ignore dangling symlinks (if any).
      [ ! -f "$i" ] && continue
-
+#	/usr/bin/psplash-write "PROGRESS $(echo "$i" | cut -c 14-15)"	
      case "$i" in
 	*.sh)
 	    # Source shell script for speed.

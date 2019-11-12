@@ -1,4 +1,4 @@
-#
+#!/bin/sh
 # This script to update Linux 4.1.18 system
 # This script will respectively update the u-boot, device tree, zImage 
 # and the filesystem from sd card to NAND or to eMMC.
@@ -14,39 +14,40 @@
 # Date: 2017.09.08
 #	update images from sd to NAND
 #	update images from sd to emmc 
+# Date: 2019.07.31
+#	Change the directory of images 
 
-#!/bin/sh
 
 # The path sdcard mounted
 SD_MOUNT_POINT="/media/mmcblk1p1"
 # The rootfs partition would be mounted on current 'rootfs' directory
-
+VERSION="V1.8 for nand"
 EMMC_BOOT_MP="boot"
 EMMC_ROOTFS_MP="rootfs"
 
 if [ "$1" == "loader2usbmsc" ]; then
-	FILE_MLO="MLO_usbmsc"
+	FILE_MLO="images/MLO_usbmsc"
 elif [ "$1" == "loader2emmc" ]; then
-	FILE_MLO="MLO_emmc"
+	FILE_MLO="images/MLO_emmc"
 elif [ "$1" == "loader2nand" ]; then
-	FILE_MLO="MLO_nand"
+	FILE_MLO="images/MLO_nand"
 fi
 if [ "$1" == "loader2usbmsc" ]; then
-	FILE_UBOOT="u-boot_usbmsc.img"
+	FILE_UBOOT="images/u-boot_usbmsc.img"
 elif [ "$1" == "loader2emmc" ]; then
-	FILE_UBOOT="u-boot_emmc.img"
+	FILE_UBOOT="images/u-boot_emmc.img"
 elif [ "$1" == "loader2nand" ]; then
-	FILE_UBOOT="u-boot_nand.img"
+	FILE_UBOOT="images/u-boot_nand.img"
 fi
 
-FILE_ZIMAGE="zImage"
-FILE_DEVICETREE="myd_y335x.dtb"
-FILE_DEVICETREE_EMMC="myd_y335x_emmc.dtb"
-FILE_FILESYSTEM="rootfs.tar.gz"
-FILE_FILESYSTEM_NAND="rootfs.ubi"
-FILE_RAMDISK="ramdisk.gz"
-FILE_UBOOTENV="u-boot-env.bin"
-FILE_DEFAULT_UENV="uEnv.txt"
+FILE_ZIMAGE="images/zImage"
+FILE_DEVICETREE="images/myd_y335x.dtb"
+FILE_DEVICETREE_EMMC="images/myd_y335x_emmc.dtb"
+FILE_FILESYSTEM="images/rootfs.tar.gz"
+FILE_FILESYSTEM_NAND="images/rootfs.ubi"
+FILE_RAMDISK="images/ramdisk.gz"
+FILE_UBOOTENV="images/u-boot-env.bin"
+FILE_DEFAULT_UENV="images/uEnv.txt"
 
 # eMMC  is connected to mmc host 1,  sd is connected to mmc host 0
 EMMC_DRIVE=
@@ -206,9 +207,9 @@ check_files_in_sdcard()
 
 	# Check uEnv
 	if [ "$1" == "loader2emmc" ]; then
-		FILE_DEFAULT_UENV="uEnv_mmc.txt";
+		FILE_DEFAULT_UENV="images/uEnv_mmc.txt";
 	elif [ "$1" == "loader2usbmsc" ]; then
-		FILE_DEFAULT_UENV="uEnv_usbmsc.txt";
+		FILE_DEFAULT_UENV="images/uEnv_usbmsc.txt";
 	fi
 	if [ ! -e "$SD_MOUNT_POINT/$FILE_DEFAULT_ENV" ]; then
 		echo "===> Update failed, $SD_MOUNT_POINT/$FILE_DEFAULT_UENV not exists"
@@ -250,7 +251,7 @@ emmc_partition()
 #200,,0x0c,-
 #EOF
 	{
-	echo ,395352,0x0C,*
+	echo ,2092920,0x0C,*
 	echo ,2092920,,-
 	echo ,,,-
 	} | sfdisk -u S $EMMC_DRIVE >/dev/null 2>&1
@@ -375,9 +376,9 @@ emmc_update()
 {
 	echo "===> Update loader to emmc..."
 	cp $SD_MOUNT_POINT/$FILE_MLO "$EMMC_BOOT_MP"/MLO
-	cp $SD_MOUNT_POINT/MLO_* "$EMMC_BOOT_MP"/
+	cp $SD_MOUNT_POINT/images/MLO_* "$EMMC_BOOT_MP"/
 	cp $SD_MOUNT_POINT/$FILE_UBOOT "$EMMC_BOOT_MP"/u-boot.img
-	cp $SD_MOUNT_POINT/u-boot_*.img "$EMMC_BOOT_MP"/
+	cp $SD_MOUNT_POINT/images/u-boot_*.img "$EMMC_BOOT_MP"/
 	
 	echo "===> Updating kernel and devicetree to emmc..."
 	cp $SD_MOUNT_POINT/$FILE_ZIMAGE $EMMC_BOOT_MP
@@ -389,7 +390,7 @@ emmc_update()
 
 	echo "===> Update uEnv to emmc..."
 	cp $SD_MOUNT_POINT/$FILE_DEFAULT_UENV $EMMC_BOOT_MP/uEnv.txt
-	cp $SD_MOUNT_POINT/uEnv_*.txt $EMMC_BOOT_MP/
+	cp $SD_MOUNT_POINT/images/uEnv_*.txt $EMMC_BOOT_MP/
 
 	echo "===> Updating filesystem to emmc..."
 	cp $SD_MOUNT_POINT/$FILE_FILESYSTEM $EMMC_BOOT_MP/
@@ -407,9 +408,9 @@ usbmsc_update()
 {
 	echo "===> Update loader to usb dom..."
 	cp $SD_MOUNT_POINT/$FILE_MLO "$EMMC_BOOT_MP"/MLO
-	cp $SD_MOUNT_POINT/MLO_* "$EMMC_BOOT_MP"/
+	cp $SD_MOUNT_POINT/images/MLO_* "$EMMC_BOOT_MP"/
 	cp $SD_MOUNT_POINT/$FILE_UBOOT "$EMMC_BOOT_MP"/u-boot.img
-	cp $SD_MOUNT_POINT/u-boot_*.img "$EMMC_BOOT_MP"/
+	cp $SD_MOUNT_POINT/images/u-boot_*.img "$EMMC_BOOT_MP"/
 	
 	echo "===> Updating kernel and devicetree to usb dom..."
 	cp $SD_MOUNT_POINT/$FILE_ZIMAGE $EMMC_BOOT_MP
@@ -421,7 +422,7 @@ usbmsc_update()
 
 	echo "===> Update uEnv to usb dom ..."
 	cp $SD_MOUNT_POINT/$FILE_DEFAULT_UENV $EMMC_BOOT_MP/uEnv.txt
-	cp $SD_MOUNT_POINT/uEnv_*.txt $EMMC_BOOT_MP/
+	cp $SD_MOUNT_POINT/images/uEnv_*.txt $EMMC_BOOT_MP/
 
 	echo "===> Updating filesystem to usb dom ..."
 	cp $SD_MOUNT_POINT/$FILE_FILESYSTEM $EMMC_BOOT_MP/
@@ -465,14 +466,16 @@ nand_update()
         nandwrite -p /dev/mtd5 $SD_MOUNT_POINT/$FILE_UBOOT
         flash_erase /dev/mtd6 0 0
         flash_erase /dev/mtd7 0 0
+
         flash_erase /dev/mtd8 0 0
         nandwrite -p /dev/mtd8 $SD_MOUNT_POINT/$FILE_ZIMAGE
-        flash_erase /dev/mtd9 0 0
+
+	flash_erase /dev/mtd9 0 0
         ubiformat /dev/mtd9 -f $SD_MOUNT_POINT/$FILE_FILESYSTEM_NAND  -s 2048 -O 2048
         sync
-
-
 }
+
+echo "================ updatesys " $VERSION " ====================="
 
 if [ "$1" = "loader2usbmsc" ]; then
 	echo "All data on usb dom now will be destroyed! Continue? [y/n]"

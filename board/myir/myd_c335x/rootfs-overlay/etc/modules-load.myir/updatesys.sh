@@ -21,7 +21,7 @@
 # The path sdcard mounted
 SD_MOUNT_POINT="/media/mmcblk1p1"
 # The rootfs partition would be mounted on current 'rootfs' directory
-VERSION="V1.8 for nand dual backup."
+VERSION="V1.8 for nand"
 EMMC_BOOT_MP="boot"
 EMMC_ROOTFS_MP="rootfs"
 
@@ -474,7 +474,6 @@ nand_update()
         ubiformat /dev/mtd9 -f $SD_MOUNT_POINT/$FILE_FILESYSTEM_NAND  -s 2048 -O 2048
         sync
 }
-
 
 echo "================ updatesys " $VERSION " ====================="
 

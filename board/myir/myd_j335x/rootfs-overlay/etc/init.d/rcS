@@ -1,5 +1,6 @@
 #!/bin/sh
-/usr/bin/psplash &
+#/usr/bin/psplash &
+/etc/init.d/boot_start
 
 # Start all init scripts in /etc/init.d
 # executing them in numerical order.
@@ -8,7 +9,7 @@ for i in /etc/init.d/S??* ;do
 
      # Ignore dangling symlinks (if any).
      [ ! -f "$i" ] && continue
-	/usr/bin/psplash-write "PROGRESS $(echo "$i" | cut -c 14-15)"	
+#	/usr/bin/psplash-write "PROGRESS $(echo "$i" | cut -c 14-15)"	
      case "$i" in
 	*.sh)
 	    # Source shell script for speed.
@@ -25,3 +26,4 @@ for i in /etc/init.d/S??* ;do
     esac
 done
 
+#/etc/init.d/boot_end  # run at the end of /etc/modules-load.myir/postboot

@@ -1,5 +1,7 @@
 #!/bin/sh
 
-echo "ok"
+/etc/init.d/boot_end
+
+echo "[MYIR] Postboot success."
 
 

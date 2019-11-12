@@ -10,6 +10,13 @@ load_drivers()
 
 do_board()
 {
+    mount -t jffs2 mtd:NAND.userdata /opt
+    mkdir -p /home/ftp/nand
+    mkdir -p /home/ftp/ram
+    mkdir -p /tmp/myir
+    mount -o bind /tmp/myir  /home/ftp/ram
+    chmod -R 777 /home/ftp
+
 	load_drivers "am335x" 
 }
 

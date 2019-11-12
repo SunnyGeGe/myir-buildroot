@@ -21,9 +21,11 @@ Buildroot, you have to prepare a SDCard and a USB stick.
 
 How to build it
 ===============
-For NAND:
-  $ make myd_y335x_defconfig
-For EMMC:
+
+For NAND: 
+  $ make myd_y335x_defconfig     	-- without dualbackup
+  $ make myd_y335x_backup_defconfig     -- with dualbackup
+For EMMC(does not support dualbackup):
   $ make myd_y335x_emmc_defconfig
 
 Then you can edit the build options using
@@ -57,10 +59,12 @@ After building, you should get a tree like this:
   ├── uEnv_sd_ramdisk.txt	# uEnv.txt for sd with ramdisk rootfs
   ├── uEnv_usbmsc.txt		# uEnv.txt for usb mass storage device with ext4 rootfs
   ├── uEnv_usbmsc_ramdisk.txt	# uEnv.txt for usb mass storage device with ramdisk rootfs
-  ├── uEnv_ramdisk.txt		# the same as uEnv_sd_ramdisk.txt
-  ├── myd_y335x.dtb		# device tree for nand core board
+  ├── uEnv_ramdisk.txt
+  ├── myd_y335x.dtb           # device tree for nand core board
   ├── myd_y335x_emmc.dtb	# device tree for emmc core boad
-  ├── zImage			
+  ├── zImage
+  ├── kernel.img		# kernel image with zImage and device tree be included.
+  ├── recovery.img		# recovery image with zImage and device tree and ramdisk be included.
   ├── rootfs.cpio
   ├── rootfs.cpio.gz
   ├── rootfs.cpio.uboot
@@ -68,7 +72,7 @@ After building, you should get a tree like this:
   ├── rootfs.ext4
   ├── rootfs.tar
   ├── rootfs.tar.gz
-  ├── rootfs.ubi
+  ├── rootfs.ubi        # rootfs image for NAND Flash
   ├── rootfs.ubifs
   ├── sdcard.img		# disk image for sd card with ext4 rootfs
   └── zImage
@@ -77,7 +81,7 @@ How to use it
 ===============
 1. Boot from TF/SD card with ramdisk
   - Format TF/SD with fat/fat32 format
-  - Copy MLO, u-boot.img, uEnv_ramdisk.txt, zImage, myd_y335x.dtb, ramdisk.gz to TF/SD card.
+  - Copy MLO, u-boot.img, uEnv_ramdisk.txt, zImage, myd_y335x.dtb, ramdisk.gz and images directory to TF/SD card.
   - Rename uEnv_ramdisk.txt to uEnv.txt
   - Insert the TF/SD card to slot, and set bootmode to mmc0
   - Powreoff and poweron to boot from TF/SD card with ramdisk
@@ -104,7 +108,8 @@ How to use it
   - bootz  ${loadaddr} ${rdaddr} ${fdtaddr}
 
 5. Boot from Nand
-  - Copy MLO, u-boot.img, uEnv_ramdisk.txt, zImage, myd_y335x.dtb, ramdisk.gz, rootfs.ubi to TF/SD card.
+  - Copy MLO, u-boot.img, uEnv_ramdisk.txt, zImage, myd_y335x.dtb, ramdisk.gz, rootfs.ubi and images directory to TF/SD card.
+  - Rename uEnv_ramdisk.txt to uEnv.txt
   - Insert the TF/SD card to slot, and set bootmode to mmc0
   - PowerOff and PowerOn to boot from TF/SD card, press 'space' to interrupt u-boot and enter the u-boot console
   - Execute 'run updatesys' in u-boot console to write MLO, u-boot.img, zImage, myd_y335x.dtb, rootfs.ubi to nand
@@ -112,6 +117,9 @@ How to use it
   - Set bootmode to nand and poweron
 
 6. Boot from EMMC
+  - Format TF/SD with fat/fat32 format
+  - Copy all images file compiling with "myd_y335x_emmc_defconfig" to the TF/SD card.
+  - Set "fdtfile=myd_y335x_emmc.dtb" in uEnv_ramdisk.txt and rename uEnv_ramdisk.txt to uEnv.txt.
   - Boot from TF/SD and login into linux 
   - Run "/etc/modules-load.myir/updatesys.sh loader2emmc sd" to write the image files from TF/SD to emmc
   - Change the boot mode to emmc and repower up.
@@ -123,10 +131,15 @@ Users can update system from sd to nand or emmc automatically by setting differe
 1. Auto update from sd to nand
   - Add "optargs = updatesys_from_sd_to_nand" to the uEnv.txt in TF/SD
   - Boot from TF/SD
-
-2. Auto update from sd to emmc
+  - Please refer to uEnv_updatesys_nand.txt
+2. Auto update with dualbackup from sd to nand
+  - Add "optargs = updatesys2_from_sd_to_nand" to the uEnv.txt in TF/SD
+  - Boot from TF/SD
+  - Please refer to uEnv_updatesys_nand.txt
+3. Auto update from sd to emmc
   - Add "optargs = updatesys_from_sd_to_emmc" to the uEnv.txt in TF/SD
   - Boot from TF/SD
+  - Please refer to uEnv_updatesys_emmc.txt
 
 Links
 ===============

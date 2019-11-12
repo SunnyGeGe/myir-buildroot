@@ -7,6 +7,11 @@ auto eth0
 iface eth0 inet dhcp
 	pre-up /etc/network/nfs_check
 	wait-delay 15
+	
+auto eth0:1
+iface eth0:1 inet static
+    address 192.168.0.101
+    netmask 255.255.255.0
 
 auto eth1
 iface eth1 inet static

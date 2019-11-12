@@ -1,0 +1,9 @@
+#!/bin/sh
+fail()
+{
+    echo -e "$1"    
+    /bin/bash
+}
+
+echo "[MYIR] Prestart booting..."
+exit 0
