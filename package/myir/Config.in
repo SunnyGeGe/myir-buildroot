@@ -26,6 +26,9 @@ config BR2_PACKAGE_PCBA_TEST_MYD_J335X
 config BR2_PACKAGE_PCBA_TEST_MYD_Y335X
 	bool "myd_y335x"
 
+config BR2_PACKAGE_PCBA_TEST_AM335X_FACTORY
+	bool "am335x_factory"
+
 endchoice
 
 config BR2_PACKAGE_MYIR_PLATFORM
@@ -36,6 +39,7 @@ config BR2_PACKAGE_MYIR_PLATFORM
 	default "myd_c335x" if BR2_PACKAGE_PCBA_TEST_MYD_C335X
 	default "myd_j335x" if BR2_PACKAGE_PCBA_TEST_MYD_J335X
 	default "myd_y335x" if BR2_PACKAGE_PCBA_TEST_MYD_Y335X
+	default "am335x_factory" if BR2_PACKAGE_PCBA_TEST_AM335X_FACTORY
 
 source "package/myir/pcba_test/Config.in"
 source "package/myir/ltp-ddt/Config.in"

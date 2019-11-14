@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-PCBA_TEST_VERSION = feature_pcba_test_myd_c437x_idk
+PCBA_TEST_VERSION = master
 PCBA_TEST_SITE = http://192.168.30.2:3000/sunnyguo-myir/myir-pcba-test.git
 PCBA_TEST_SITE_METHOD = git
 PCBA_TEST_LICENSE = Creative Commons CC0 1.0 Universal

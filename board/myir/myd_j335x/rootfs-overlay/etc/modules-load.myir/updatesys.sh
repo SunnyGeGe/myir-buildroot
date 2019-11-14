@@ -16,12 +16,14 @@
 #	update images from sd to emmc 
 # Date: 2019.07.31
 #	Change the directory of images 
+# Date: 2019.11.14
+# 	use the same update.sh to update images for c335x, y335x, j335x.	
 
 
 # The path sdcard mounted
 SD_MOUNT_POINT="/media/mmcblk1p1"
 # The rootfs partition would be mounted on current 'rootfs' directory
-VERSION="V1.8 for nand"
+VERSION="V1.9"
 EMMC_BOOT_MP="boot"
 EMMC_ROOTFS_MP="rootfs"
 
@@ -41,8 +43,16 @@ elif [ "$1" == "loader2nand" ]; then
 fi
 
 FILE_ZIMAGE="images/zImage"
-FILE_DEVICETREE="images/myd_j335x.dtb"
-FILE_DEVICETREE_EMMC="images/myd_j335x_emmc.dtb"
+if [ "$3" == "c335x" ]; then
+	FILE_DEVICETREE="images/myd_c335x.dtb"
+	FILE_DEVICETREE_EMMC="images/myd_c335x_emmc.dtb"
+elif [ "$3" == "y335x" ]; then
+	FILE_DEVICETREE="images/myd_y335x.dtb"
+	FILE_DEVICETREE_EMMC="images/myd_y335x_emmc.dtb"
+elif [ "$3" == "j335x" ]; then
+	FILE_DEVICETREE="images/myd_j335x.dtb"
+	FILE_DEVICETREE_EMMC="images/myd_j335x_emmc.dtb"
+fi
 FILE_FILESYSTEM="images/rootfs.tar.gz"
 FILE_FILESYSTEM_NAND="images/rootfs.ubi"
 FILE_RAMDISK="images/ramdisk.gz"
