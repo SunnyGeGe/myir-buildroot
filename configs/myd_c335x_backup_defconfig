@@ -107,7 +107,7 @@ BR2_ZCAT="gzip -d -c"
 BR2_BZCAT="bzcat"
 BR2_XZCAT="xzcat"
 BR2_TAR_OPTIONS=""
-BR2_DEFCONFIG="$(TOPDIR)/configs/myd_c335x_defconfig"
+BR2_DEFCONFIG="$(TOPDIR)/configs/myd_c335x_backup_defconfig"
 BR2_DL_DIR="$(TOPDIR)/dl"
 BR2_HOST_DIR="$(BASE_DIR)/host"
 
